@@ -17,17 +17,19 @@ You can use the automation framework for learning, but you need to have some kno
 # Getting Started
 Please follow the steps to set up the project:
 ### Installation requirements:
-1. Install JDK9.
-2. Set up environment variables of Java 9.
-3. Install Java IDE by your choise.
+1. Install JDK version 9 or higher.
+2. Set up environment variables for Java.
+3. Install IDE that supports JAVA by your choise.
 4. Add TestNG to your IDE.
 5. Download the last version of chromedriver.exe, geckodriver.exe etc.
 6. Download and install Chrome and Firefox browsers and make sure that you start them once after the installation.
 7. Clone the repository.
 8. Put downloaded WebDrivers from step 5 inside the "drivers" folder at the project's root.
-9. Open the automation framework by your IDE.
-10. Read the readme.rd file to understand how to use the framework.
-11. Enjoy and automate with pleasure!
+9. Add the "drivers" folder from the project's root to the "PATH" environment variables.
+10. Restart the IDE.
+11. Open the automation framework by your IDE.
+12. Read the readme.rd file to understand how to use the framework.
+13. Enjoy and automate with pleasure!
 
 ###	Software dependencies
 The dependencies will be downloaded automatically by Maven.  
