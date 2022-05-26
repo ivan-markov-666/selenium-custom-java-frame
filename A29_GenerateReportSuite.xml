@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="This suit is used to show how can be generated HTML report for many test classes.">
+<test name="Test1">
+	<classes>
+		<class name="tests.A29_1_GenerateReport_spec"></class>
+	</classes>
+</test>
+<test name="Test2">
+	<classes>
+		<class name="tests.A29_1_GenerateReport_spec"></class>
+	</classes>
+</test>
+</suite>
+

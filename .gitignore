@@ -1,0 +1,22 @@
+# Ignore dependencies settings.
+.settings/*
+
+# Ignore downloads files.
+downloads/*
+
+# Ignore web driver files.
+drivers/*
+
+# Ignore generated screenshots.
+screenshots/*
+
+# Ignore generated local reports.
+test-output/*
+
+# Ignore pom packages:
+src/main/java/pom_book
+src/main/java/pom_training
+
+# Ignore spec tests
+src/test/java/scrap_bookT2S
+src/test/java/trainings
