@@ -26,7 +26,7 @@ Please follow the steps to set up the project:
 7. Clone the repository.
 8. Put downloaded WebDrivers from step 5 inside the "drivers" folder at the project's root.
 9. Add the "drivers" folder from the project's root to the "PATH" environment variables.
-10. Restart the IDE.
+10. If you opened the IDE - restart it.
 11. Open the automation framework by your IDE.
 12. Read the readme.rd file to understand how to use the framework.
 13. Enjoy and automate with pleasure!
