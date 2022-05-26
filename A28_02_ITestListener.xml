@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="This suit is used to show how 'onStart' and 'onFinish' listeners is working (from ITestListener).">
+<test name="Test1">
+	<classes>
+		<class name="tests.A28_02_ITestListener_spec"></class>
+	</classes>
+</test>
+<test name="Test2">
+	<classes>
+		<class name="tests.A28_02_ITestListener_spec"></class>
+	</classes>
+</test>
+</suite>
