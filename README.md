@@ -1,7 +1,7 @@
 # Introduction
 This project is a custom framework for automation web testing.  
 Using this frame, you will be able to create automation scripts for testing the web-based software quickly.  
-The automation frame comprises a Selenium Web-driver with a TestNG testing framework. The programming language is Java.  
+The automation frame comprises a Selenium WebDriver with a TestNG testing framework. The programming language is Java.  
 
 # Precondition
 You can use the automation framework for learning, but you need to have some knowledge for:
@@ -24,7 +24,7 @@ Please follow the steps to set up the project:
 5. Download the last version of chromedriver.exe, geckodriver.exe etc.
 6. Download and install Chrome and Firefox browsers and make sure that you start them once after the installation.
 7. Clone the repository.
-8. Put downloaded web-drivers from step 5 inside the "drivers" folder at the project's root.
+8. Put downloaded WebDrivers from step 5 inside the "drivers" folder at the project's root.
 9. Open the automation framework by your IDE.
 10. Read the readme.rd file to understand how to use the framework.
 11. Enjoy and automate with pleasure!
@@ -80,16 +80,16 @@ I. A mechanism is integrated with the framework for reading data from Excel file
 2. Use read data in your tests. For more details please review "ReadingFromExcelFile" class located in "src/test/java/data-driven testing".  
 You can see methods that are used for data-driven testing, and they are located in the "ImportDataFromExcel" class located in the same place as the example class.  
 
-II. You can use the TestNG mechanism to read XML file data. You can review "A26_ProvideParametersToTestMethod_spec" test class and "A26_ProvideParametersToTestMethod.xml" file for more details.  
+II.  Use the TestNG mechanism to read testing data from an XML file. You can review "A26_ProvideParametersToTestMethod_spec" test class and "A26_ProvideParametersToTestMethod.xml" file for more details.  
 
 III. You can generate data dynamically using the faker-java library. Please review the "A19_FakerExample_spec" class for more details
 
 ### Uploads:
 Because sometimes we will need to upload files, there is a folder where we can put those files. The folder is located in "uploads".   Of course, you can use any other folder on your machine.  
 
-### Web-driver
-You can put the web-drivers into the "drivers" folder. Whenever you need to update the web-drivers - put the new versions in that folder.  
-Suppose you need to add a new browser to the frame. In that case, you need to add the web-driver to this folder and add the browser name into the "src/main/java/configuration/Configuration.java" class (review the class for more details), then you need to add the new if-else statement into the "src/test/java/base/BaseTestClass.java" class to add web-driver code related to the browser (review the class for more details).
+### WebDriver
+You can put the WebDrivers into the "drivers" folder. Whenever you need to update the WebDrivers - put the new versions in that folder.  
+Suppose you need to add a new browser to the frame. In that case, you need to add the WebDriver to this folder and add the browser name into the "src/main/java/configuration/Configuration.java" class (review the class for more details), then you need to add the new if-else statement into the "src/test/java/base/BaseTestClass.java" class to add WebDriver code related to the browser (review the class for more details).
 
 ### Screenshots
 The automation frame has a mechanism to generate a screenshot when something goes wrong or when some test fails. The generated screenshot can be found in the "screenshots" folder. Don't forget to refresh the folder from the IDE because the files will not appear.
