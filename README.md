@@ -100,7 +100,7 @@ The automation frame has a mechanism to generate a screenshot when something goe
 When the automation test needs to download some resources, you can use the "downloads" folder.
 
 ### To Do:
-The frame is not perfect. That's why there is a to-do list located in "cypress/toDo/toDo.txt".  
+The frame is not perfect. That's why there is a to-do list located in "./toDo/ToDo.txt".  
 
 # Contribute
 You can use the framework for free and make changes to it. I hope the frame will save configuration time and develop the custom commands.
