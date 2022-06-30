@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Parameter TestSuite">
+<test name="Test Name">
+<parameter name="firstNameValue" value="John"></parameter>
+<parameter name="lastNameValue" value="Doe"></parameter>
+<parameter name="emailValue" value="testingemail@testinghost12.com"></parameter>
+<parameter name="ageValue" value="29"></parameter>
+<parameter name="salaryValue" value="3000"></parameter>
+<parameter name="departmentValue" value="Chemistry"></parameter>
+
+<parameter name="firstNameValueEdited" value="Richerd"></parameter>
+<parameter name="lastNameValueEdited" value="Nixon"></parameter>
+<parameter name="emailValueEdited" value="newtestemail@testinghost24.com"></parameter>
+<parameter name="ageValueEdited" value="45"></parameter>
+<parameter name="salaryValueEdited" value="5000"></parameter>
+<parameter name="departmentValueEdited" value="Mathematics"></parameter>
+	<classes>
+		<class name="tests.A26_ProvideParametersToTestMethod_spec"></class>
+	</classes>
+</test> <!-- Test -->
+</suite> <!-- Suit -->
