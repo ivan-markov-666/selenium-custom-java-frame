@@ -1,6 +1,7 @@
 package custom_methods;
 
 import java.io.File;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.io.FileUtils;
@@ -167,6 +168,7 @@ public class MainMethods {
       // different browser tabs.
       driver.switchTo().window(tabs.get(browserWindow)); // Switch to the selected browser tab.
       driver.get(url); // Navigate to URL.
+      Assert.assertEquals(driver.getCurrentUrl(), url); // Assert that the URL that browser load is the expected URL.
       wait.waitIsDisplayed(element); // Wait the WebElement to be displayed on the screen.
       otherMethods.messagesMetohd("Message: Opening a new broser tab and navigate to URL '" + url + "'. Then the automation is wating for WebElement '" + element + "' to be displayed.");
     } catch (Exception e) {
@@ -187,6 +189,7 @@ public class MainMethods {
     String className = this.getClass().getSimpleName(); // Get the name of the class.
     try {
       driver.get(url); // Navigate to URL.
+      Assert.assertEquals(driver.getCurrentUrl(), url); // Assert that the URL that browser load is the expected URL.
       wait.waitIsDisplayed(element); // Wait the WebElement to be displayed on the screen.
       otherMethods.messagesMetohd("Message: Navigate to URL '" + url + "'. Then the automation is wating for WebElement '" + element + "' to be displayed.");
     } catch (Exception e) {
@@ -591,7 +594,7 @@ public class MainMethods {
     String className = this.getClass().getSimpleName(); // Get the name of the class.
     try {
       element.click(); // Click on the button to show the pop-up window.
-      WebDriverWait wait = new WebDriverWait(driver, config.timeOut); // Declare a wait.
+      WebDriverWait wait = new WebDriverWait(driver,  Duration.ofSeconds(config.timeOut)); // Declare a wait.
       wait.until(ExpectedConditions.alertIsPresent()); // Wait until the pop-up is present.
       String getThePopUpText = driver.switchTo().alert().getText(); // Get the text of the pop-up window.
       Assert.assertEquals(getThePopUpText, expectedReult); // Make an assertion to make sure that the pop-up is opened.
@@ -615,7 +618,7 @@ public class MainMethods {
     String className = this.getClass().getSimpleName(); // Get the name of the class.
     try {
       element.click(); // Click on the button to show the pop-up window.
-      WebDriverWait wait = new WebDriverWait(driver, config.timeOut); // Declare a wait.
+      WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(config.timeOut)); // Declare a wait.
       wait.until(ExpectedConditions.alertIsPresent()); // Wait until the pop-up is present.
       String getThePopUpText = driver.switchTo().alert().getText(); // Get the text of the pop-up window.
       Assert.assertEquals(getThePopUpText, expectedReult); // Make an assertion to make sure that the pop-up is opened.
@@ -640,7 +643,7 @@ public class MainMethods {
     String className = this.getClass().getSimpleName(); // Get the name of the class.
     try {
       element.click(); // Click on the button to show the pop-up window.
-      WebDriverWait wait = new WebDriverWait(driver, config.timeOut); // Declare a wait.
+      WebDriverWait wait = new WebDriverWait(driver,  Duration.ofSeconds(config.timeOut)); // Declare a wait.
       wait.until(ExpectedConditions.alertIsPresent()); // Wait until the pop-up is present.
       String getThePopUpText = driver.switchTo().alert().getText(); // Get the text of the pop-up window.
       Assert.assertEquals(getThePopUpText, expectedReult); // Make an assertion to make sure that the pop-up is opened.
@@ -825,7 +828,7 @@ public class MainMethods {
         "' method from '" + className + "' class. Error message: " + e); // This message will be shown if something is gone wrong with the method.
       takeScreenShotInMethod(); // Take a screenshot when the method fails.
     }
-    return null;
-  }
+	return null;
+}
 
 }

@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -76,7 +76,7 @@ public class A25_3_ClassAnotationsExample_spec {
     config = new Configuration();
     page = new A24_2_po(driver);
     driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(config.timeOut, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(config.timeOut)); // Set Implicit Wait.
   }
 
   // This will be executed after every @test annotated method.

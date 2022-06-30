@@ -10,8 +10,8 @@ package tests;
 
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
+import java.time.Duration;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -86,7 +86,7 @@ public class A16_BrowserTabOperations_spec {
     driver = new ChromeDriver();
     baseURL = "https://demoqa.com/";
     driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(45, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45)); // Set Implicit Wait.
     driver.get(baseURL + "links");
   }
 

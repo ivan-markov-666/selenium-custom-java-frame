@@ -10,7 +10,7 @@ package tests;
 
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -37,7 +37,7 @@ public class A21_AlertsExamples_spec {
   public void acceptTheAlertByAcceptMethod() {
     mainMethods.navigateURL(url, page.clickMeButton1); // Navigate to the URL address.
     page.clickMeButton1.click(); // Click on the "Click Me" button.
-    WebDriverWait wait = new WebDriverWait(driver, 45); // Declare a wait.
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(config.timeOut)); // Declare a wait.
     wait.until(ExpectedConditions.alertIsPresent()); // Wait until the pop-up is present.
     String getThePopUpText = driver.switchTo().alert().getText(); // Get the text of the pop-up window.
     System.out.println("The Alert message is: '" + getThePopUpText + "'"); // Print the text from the pop-up to the console log.
@@ -52,7 +52,7 @@ public class A21_AlertsExamples_spec {
   public void cancelTheAlertByDismissMethod() {
     mainMethods.navigateURL(url, page.clickMeButton1); // Navigate to the URL address.
     page.clickMeButton1.click(); // Click on the "Click Me" button.
-    WebDriverWait wait = new WebDriverWait(driver, 45); // Declare a wait.
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(config.timeOut)); // Declare a wait.
     wait.until(ExpectedConditions.alertIsPresent()); // Wait until the pop-up is present.
     driver.switchTo().alert().dismiss(); // Press on the "Cancel" button of the pop-up window.
   }
@@ -66,7 +66,7 @@ public class A21_AlertsExamples_spec {
   public void sendTextTOAlert() {
     mainMethods.navigateURL(url, page.clickMeButton2); // Navigate to the URL address.
     page.clickMeButton2.click(); // Click on the "Click Me" button.
-    WebDriverWait wait = new WebDriverWait(driver, 45); // Declare a wait.
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(config.timeOut)); // Declare a wait.
     wait.until(ExpectedConditions.alertIsPresent()); // Wait until the pop-up is present.
     driver.switchTo().alert().sendKeys("testing Text"); // Fill with the text into the alert window.
     driver.switchTo().alert().accept(); // Press on the "OK" button of the pop-up window.
@@ -111,7 +111,7 @@ public class A21_AlertsExamples_spec {
     baseURL = "https://demoqa.com/";
     url = baseURL + "alerts";
     driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(config.timeOut, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(config.timeOut)); // Set Implicit Wait.
   }
 
   @AfterMethod

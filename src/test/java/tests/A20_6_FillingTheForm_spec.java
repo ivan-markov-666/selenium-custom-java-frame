@@ -21,14 +21,13 @@ import com.github.javafaker.Faker;
 import org.testng.annotations.BeforeClass;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
-
 import configuration.Configuration;
 import custom_methods.MainMethods;
 import custom_methods.OtherMethods;
@@ -118,7 +117,7 @@ public class A20_6_FillingTheForm_spec {
     url = baseURL + "upload-download";
     teMinutesMailUrl = "https://10minemail.com/";
     driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(config.timeOut, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(config.timeOut)); // Set Implicit Wait.
     driver.get(url);
   }
 

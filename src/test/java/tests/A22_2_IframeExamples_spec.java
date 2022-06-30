@@ -11,7 +11,7 @@ package tests;
 
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -66,7 +66,7 @@ public class A22_2_IframeExamples_spec {
     baseURL = "https://demoqa.com/";
     url = baseURL + "frames";
     driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(config.timeOut, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(config.timeOut)); // Set Implicit Wait.
   }
 
   @AfterMethod

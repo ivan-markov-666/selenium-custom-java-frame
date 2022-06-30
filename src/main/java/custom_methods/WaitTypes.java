@@ -1,5 +1,7 @@
 package custom_methods;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -48,7 +50,7 @@ public class WaitTypes {
     WebElement element = null;
     try {
       otherMethods.messagesMetohd("Message: We are waiting " + timeout + " seconds to load the locator '" + locator + "'.");
-      WebDriverWait wait = new WebDriverWait(driver, timeout);
+      WebDriverWait wait = new WebDriverWait(driver,  Duration.ofSeconds(timeout));
       element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
       otherMethods.messagesMetohd("Message: The locator appeared on the page.");
     } catch (Exception e) {
@@ -68,7 +70,7 @@ public class WaitTypes {
     WebElement element = null;
     try {
       otherMethods.messagesMetohd("Message: We are waiting " + timeout + " seconds to load the locator '" + locator + "'.");
-      WebDriverWait wait = new WebDriverWait(driver, timeout);
+      WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
       element = wait.until(ExpectedConditions.elementToBeClickable(locator));
       otherMethods.messagesMetohd("Message: The locator appeared on the page.");
     } catch (Exception e) {

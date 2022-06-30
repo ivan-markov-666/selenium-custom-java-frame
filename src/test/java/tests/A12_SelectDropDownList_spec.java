@@ -11,7 +11,7 @@ package tests;
 
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -73,7 +73,7 @@ public class A12_SelectDropDownList_spec {
     driver = new ChromeDriver();
     baseURL = "https://demoqa.com/";
     driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(45, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45)); // Set Implicit Wait.
     driver.get(baseURL + "select-menu");
   }
 

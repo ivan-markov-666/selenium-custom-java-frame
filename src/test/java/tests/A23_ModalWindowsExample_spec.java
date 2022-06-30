@@ -11,7 +11,7 @@ package tests;
 
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
@@ -51,7 +51,7 @@ public class A23_ModalWindowsExample_spec {
     baseURL = "https://demoqa.com/";
     url = baseURL + "modal-dialogs";
     driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(config.timeOut, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(config.timeOut)); // Set Implicit Wait.
   }
 
   @AfterClass

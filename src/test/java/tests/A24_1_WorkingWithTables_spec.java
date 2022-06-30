@@ -13,8 +13,8 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import com.github.javafaker.Faker;
 import org.testng.annotations.BeforeClass;
+import java.time.Duration;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
@@ -97,7 +97,7 @@ public class A24_1_WorkingWithTables_spec {
     baseURL = "https://demoqa.com/";
     url = baseURL + "webtables";
     driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(config.timeOut, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(config.timeOut)); // Set Implicit Wait.
   }
 
   @AfterClass

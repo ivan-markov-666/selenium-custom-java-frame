@@ -22,8 +22,8 @@ import configuration.Configuration;
 import org.testng.annotations.BeforeMethod;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
+import java.time.Duration;
 import java.time.Instant;
-import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -109,7 +109,7 @@ public class A20_2_FillingTheForm_spec {
     baseURL = "https://demoqa.com/";
     url = baseURL + "automation-practice-form";
     driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(config.timeOut)); // Set Implicit Wait.
     driver.get(url);
   }
 

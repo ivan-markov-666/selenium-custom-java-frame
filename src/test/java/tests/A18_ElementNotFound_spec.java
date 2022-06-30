@@ -9,11 +9,9 @@
 package tests;
 
 import org.testng.annotations.Test;
-
 import custom_methods.MainMethods;
-
 import org.testng.annotations.BeforeClass;
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
@@ -41,7 +39,7 @@ public class A18_ElementNotFound_spec {
     mainMethod = new MainMethods(driver); // Create a new constructor for MainMethods.
     baseURL = "https://demoqa.com/";
     driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45)); // Set Implicit Wait.
     driver.get(baseURL + "broken");
   }
 

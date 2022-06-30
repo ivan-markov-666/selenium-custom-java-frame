@@ -25,8 +25,8 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -105,7 +105,7 @@ public class A20_4_FillingTheForm_spec {
     locator = new A20_4_po(); // Create a new constructor for POM class.
     url = baseURL + "automation-practice-form";
     driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(config.timeOut)); // Set Implicit Wait.
     driver.get(url);
   }
 

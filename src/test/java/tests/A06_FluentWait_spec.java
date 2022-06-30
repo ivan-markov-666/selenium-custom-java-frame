@@ -10,7 +10,8 @@ package tests;
 
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
-import java.util.concurrent.TimeUnit;
+
+import java.time.Duration;
 import java.util.function.Function;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -30,16 +31,15 @@ public class A06_FluentWait_spec {
    * This example shows how:
    * - To use fluent wait.
    */
-  @SuppressWarnings("deprecation")
   @Test
   public void fluentWait() {
 
     // Declare a Fluent wait.
-    Wait < WebDriver > wait = new FluentWait < WebDriver > (driver).withTimeout(30, TimeUnit.MILLISECONDS)
-      .pollingEvery(5, TimeUnit.SECONDS).ignoring(NoSuchElementException.class);
+    Wait < WebDriver > fluentWait = new FluentWait < WebDriver > (driver).withTimeout(Duration.ofSeconds(30))
+      .pollingEvery(Duration.ofSeconds(5)).ignoring(NoSuchElementException.class);
 
     // Use the Fluent wait.
-    WebElement fullName = wait.until(new Function < WebDriver, WebElement > () {
+    WebElement fullName = fluentWait .until(new Function < WebDriver, WebElement > () {
       public WebElement apply(WebDriver driver) {
         return driver.findElement(By.id("userName"));
       }

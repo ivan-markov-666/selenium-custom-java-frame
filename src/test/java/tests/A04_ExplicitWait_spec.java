@@ -9,6 +9,9 @@ package tests;
 
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
+
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,7 +31,7 @@ public class A04_ExplicitWait_spec {
    */
   @Test
   public void explicitWait() {
-    WebDriverWait wait = new WebDriverWait(driver, 40); // Declare the explicit Wait.
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40)); // Declare the explicit Wait.
     WebElement fillWithUsername = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("userName")));
     fillWithUsername.sendKeys("Tester Testerov");
     WebElement email = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("userEmail")));

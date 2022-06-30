@@ -1,7 +1,7 @@
 # Introduction
 This project is a custom framework for automation web testing.  
 Using this frame, you will be able to create automation scripts for testing the web-based software quickly.  
-The automation frame comprises a Selenium WebDriver with a TestNG testing framework. The programming language is Java.  
+The automation frame comprises a Selenium 4 with a TestNG testing framework. The programming language is Java.  
 
 # Precondition
 You can use the automation framework for learning, but you need to have some knowledge for:

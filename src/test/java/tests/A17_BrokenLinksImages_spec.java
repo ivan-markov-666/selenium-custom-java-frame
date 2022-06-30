@@ -10,8 +10,8 @@ package tests;
 
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
+import java.time.Duration;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -114,7 +114,7 @@ public class A17_BrokenLinksImages_spec {
     driver = new ChromeDriver();
     baseURL = "https://demoqa.com/";
     driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45)); // Set Implicit Wait.
     driver.get(baseURL + "broken");
   }
 

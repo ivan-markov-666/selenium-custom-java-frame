@@ -5,15 +5,15 @@
  */
 
 package base;
+
+import java.time.Duration;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.asserts.SoftAssert;
 import com.github.javafaker.Faker;
-
 import configuration.Configuration;
 import custom_methods.MainMethods;
 import custom_methods.OtherMethods;
@@ -75,7 +75,7 @@ public class BaseTestClass {
     wait = new WaitTypes(driver); // Declare a constructor for WaitTypes.
     action = new Actions(driver);
     driver.manage().window().maximize(); // Set opened browser to 100% width and- 100% high.
-    driver.manage().timeouts().implicitlyWait(config.timeOut, TimeUnit.SECONDS); // Set Implicit Wait.	
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(config.timeOut)); // Set Implicit Wait.
     url = Configuration.baseURL + endpoint; // Set url.
     otherMethods.messagesMetohd("Message: The 'setUp' method was executed. This method contains all needed code that will be executed into the @BeforeMethod annotation.");
   }

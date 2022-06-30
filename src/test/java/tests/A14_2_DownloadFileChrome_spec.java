@@ -7,14 +7,13 @@
  */
 
 package tests;
+
 import org.testng.annotations.Test;
-
 import custom_methods.WaitTypes;
-
 import org.testng.annotations.BeforeClass;
+import java.time.Duration;
 import java.util.HashMap; // Import a HashMap library. This library is using for supporting the ChromeOptions to download a file from the browser.
 import java.util.Map; // Import a Map library. This library is using for supporting the ChromeOptions to download a file from the browser.
-import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -46,7 +45,7 @@ public class A14_2_DownloadFileChrome_spec {
 		wait = new WaitTypes(driver);
 		baseURL = "https://demoqa.com/";
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(45, TimeUnit.SECONDS);
+	    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45)); // Set Implicit Wait.
 		driver.get(baseURL + "upload-download");
 		// Define Download Option for Chrome Browser;
 		options = new ChromeOptions();

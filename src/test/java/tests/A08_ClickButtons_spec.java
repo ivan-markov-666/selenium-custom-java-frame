@@ -10,7 +10,7 @@ package tests;
 
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -71,7 +71,7 @@ public class A08_ClickButtons_spec {
     actions = new Actions(driver); // Create a new instance of Action.
     baseURL = "https://demoqa.com/";
     driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(45, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45)); // Set Implicit Wait.
     driver.get(baseURL + "buttons");
   }
 

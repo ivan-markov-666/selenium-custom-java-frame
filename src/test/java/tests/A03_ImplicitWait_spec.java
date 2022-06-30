@@ -10,7 +10,7 @@ package tests;
 
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -34,12 +34,12 @@ public class A03_ImplicitWait_spec {
     email.sendKeys("testertesterov@mail.com");
   }
 
-  @BeforeClass
+@BeforeClass
   public void setUp() {
     driver = new ChromeDriver();
     baseURL = "https://demoqa.com/";
     driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(10, TimeUnit.MINUTES); // Set Implicit Wait.
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45)); // Set Implicit Wait.
     driver.get(baseURL + "text-box");
   }
 
