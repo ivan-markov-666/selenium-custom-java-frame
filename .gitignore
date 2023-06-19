@@ -5,3 +5,4 @@ src/main/java/pom_training
 # Ignore spec tests
 src/test/java/scrap_bookT2S
 src/test/java/trainings
+/target/
