@@ -9,9 +9,9 @@ You can use the automation framework for learning, but you need to have some kno
 - https://en.wikipedia.org/wiki/Object-oriented_programming .
 2. Basic Java knowledge.  
 - https://dev.java/learn/ .
-3. Essential knowledge for Selenium. Knowledge of Selenium methods and how to use them.  
+3. Essential knowledge of Selenium. Knowledge of Selenium methods and how to use them.  
 - https://www.selenium.dev/documentation/
-4. Basic knowledge of TestNG testing framework.  
+4. Basic knowledge of the TestNG testing framework.  
 - https://testng.org/doc/
 
 # Getting Started
@@ -19,12 +19,12 @@ Please follow the steps to set up the project:
 ### Installation requirements:
 1. Install JDK version 9 or higher.
 2. Set up environment variables for Java.
-3. Install IDE that supports JAVA by your choise.
+3. Install IDE that supports JAVA by your choice.
 4. Add TestNG to your IDE.
 5. Download the last version of chromedriver.exe, geckodriver.exe etc.
 6. Download and install Chrome and Firefox browsers and make sure that you start them once after the installation.
 7. Clone the repository.
-8. Put downloaded WebDrivers from step 5 inside the "drivers" folder at the project's root.
+8. Put downloaded WebDrivers from Step 5 inside the "drivers" folder at the project's root.
 9. Add the "drivers" folder from the project's root to the "PATH" environment variables.
 10. If you opened the IDE - restart it.
 11. Open the automation framework by your IDE.
@@ -54,11 +54,11 @@ If you have any questions about the technologies, refer to the official document
 ### Custom Methods:
 There are three packages in the "src/main/java/ containing custom methods.  
 1. "custom_methods" package contains three classes.
-- "MainMethods" class contains Domain-Specific Language methods. Methods in this class are a combination of Selenium methods only. Review the class for more details. // more about what this is DSL you can find here: https://en.wikipedia.org/wiki/Domain-specific_language  
-- "OtherMethods" class contains Java methods. The methods inside this class are only Java-based. Review the class for more details.
-- "Wait Types" class contains different methods for waiting for elements to be present on the UI. Review the class for more details.
-2. "dataDrivenTesting_methods" package contains methods used for DDT. Review the "ImportDataFromExcel" class for more details.
-3. "listener_methods" package contains classes with methods with TestNG listeners. Review the classes for more details.
+- The "MainMethods" class contains Domain-Specific Language methods. Methods in this class are a combination of Selenium methods only. Review the class for more details. // more about what this is DSL you can find here: https://en.wikipedia.org/wiki/Domain-specific_language  
+- The "OtherMethods" class contains Java methods. The methods inside this class are only Java-based. Review the class for more details.
+- The "Wait Types" class contains different methods for waiting for elements to be present on the UI. Review the class for more details.
+2. The "dataDrivenTesting_methods" package contains methods used for DDT. Review the "ImportDataFromExcel" class for more details.
+3. The "listener_methods" package contains classes with methods with TestNG listeners. Review the classes for more details.
 
 ### Design Patterns:
 The frame uses using POM design pattern.  
@@ -72,17 +72,17 @@ The "Configuration" class in the "src/main/java/configuration" contains this aut
 
 ### Reports:
 There is a local report mechanism integrated into this automation frame.  
-How to generate report please review class "A29_1_GenerateReport_spec", "A29_2_GenerateReport_2_spec" located in "src/test/java/tests/".  You can review the "A29_GenerateReportSuite.xml" file too (this is suite file).  
+How to generate a report please review the class "A29_1_GenerateReport_spec", "A29_2_GenerateReport_2_spec" located in "src/test/java/tests/".  You can review the "A29_GenerateReportSuite.xml" file too (this is a suite file).  
 After executing the tests, the report should be generated and discovered in the "test-output" folder.    
 You can add different tests in a suite, and one report will be generated for each suit run.
 
 ### Testing Data:
 I. A mechanism is integrated with the framework for reading data from Excel files (Data-Driven Testing).  
-1. Create a new excel file and put it inside the "src/test/java/ExcelData/" folder. When you create the excel file, you should name each column used. The mechanism reads the first values of the columns and locates them by their names. The name of the columns is the first-row value. Every one value after the first row is a testing value. Make sure that you enter one word for each column name. If you use two words - the mechanism will not work.  
-2. Use read data in your tests. For more details please review "ReadingFromExcelFile" class located in "src/test/java/data-driven testing".  
+1. Create a new excel file and put it inside the "src/test/java/ExcelData/" folder. When you create the Excel file, you should name each column used. The mechanism reads the first values of the columns and locates them by their names. The name of the columns is the first-row value. Every one value after the first row is a testing value. Make sure that you enter one word for each column name. If you use two words - the mechanism will not work.  
+2. Use read data in your tests. For more details please review the "ReadingFromExcelFile" class located in "src/test/java/data-driven testing".  
 You can see methods that are used for data-driven testing, and they are located in the "ImportDataFromExcel" class located in the same place as the example class.  
 
-II.  Use the TestNG mechanism to read testing data from an XML file. You can review "A26_ProvideParametersToTestMethod_spec" test class and "A26_ProvideParametersToTestMethod.xml" file for more details.  
+II.  Use the TestNG mechanism to read testing data from an XML file. You can review the "A26_ProvideParametersToTestMethod_spec" test class and the "A26_ProvideParametersToTestMethod.xml" file for more details.  
 
 III. You can generate data dynamically using the faker-java library. Please review the "A19_FakerExample_spec" class for more details
 
