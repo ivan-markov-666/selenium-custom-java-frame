@@ -43,7 +43,6 @@ public class A20_7_FillingTheForm_spec {
   private static WebDriver driver;
   private static MainMethods mainMethods;
   private static OtherMethods otherMethods;
-  private static Configuration config;
   private static SoftAssert softassert;
   private static A20_7_po page;
   private static Faker faker;
@@ -63,7 +62,7 @@ public class A20_7_FillingTheForm_spec {
     String lastName = faker.name().lastName();
     String phoneNumner = otherMethods.randomString("0123456789");
     String InputDateOfBirth = "09 Sep 1964";
-    String uploadFile = config.uploadThisFilePath + config.uploadThisFileName;
+    String uploadFile = Configuration.Files.UPLOAD_FILE_PATH;
     String text = faker.lorem().sentence(24, 5);
     String genderExpectedResult = null;
     String dateOfBirthValue = null;
@@ -133,7 +132,7 @@ public class A20_7_FillingTheForm_spec {
     Assert.assertEquals(page.assertDateOfBirth.getText(), OutputDateOfBirth);
     Assert.assertEquals(page.assertSubjects.getText(), subjectsExpectedResult);
     Assert.assertEquals(page.assertHobbies.getText(), hobbiesExpectedResult);
-    Assert.assertEquals(page.assertPicture.getText(), config.uploadThisFileName);
+    Assert.assertEquals(page.assertPicture.getText(), Configuration.Files.UPLOAD_FILE_NAME);
     Assert.assertEquals(page.assertAddress.getText(), text);
     Assert.assertEquals(page.assertStateNadCity.getText(), stateActualResult + cityActualResult);
   }
@@ -177,7 +176,7 @@ public class A20_7_FillingTheForm_spec {
       page.hobbie3
     }; // Create a new collection with 'Hobbies' values.
     String hobbiesExpectedResult = null;
-    String uploadFile = config.uploadThisFilePath + config.uploadThisFileName;
+    String uploadFile = Configuration.Files.UPLOAD_FILE_PATH;
     String currentAddress = faker.lorem().sentence(24, 5);
     String staetAndCity = null;
 
@@ -227,7 +226,7 @@ public class A20_7_FillingTheForm_spec {
     softassert.assertEquals(page.assertDateOfBirth.getText(), outputDateOfBirth);
     softassert.assertEquals(page.assertSubjects.getText(), subjectsExpectedResult);
     softassert.assertEquals(page.assertHobbies.getText(), hobbiesExpectedResult);
-    softassert.assertEquals(page.assertPicture.getText(), config.uploadThisFileName);
+    softassert.assertEquals(page.assertPicture.getText(), Configuration.Timeouts.IMPLICIT_WAIT);
     softassert.assertEquals(page.assertAddress.getText(), currentAddress);
     softassert.assertEquals(page.assertStateNadCity.getText(), staetAndCity);
     softassert.assertAll();
@@ -238,7 +237,6 @@ public class A20_7_FillingTheForm_spec {
     driver = new ChromeDriver();
     mainMethods = new MainMethods(driver);
     otherMethods = new OtherMethods();
-    config = new Configuration();
     softassert = new SoftAssert();
     wait = new WaitTypes(driver);
     page = new A20_7_po(driver);
@@ -247,7 +245,7 @@ public class A20_7_FillingTheForm_spec {
     url = baseURL + "automation-practice-form";
     teMinutesMailUrl = "https://10minemail.com/";
     driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(config.timeOut)); // Set Implicit Wait.
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Configuration.Timeouts.IMPLICIT_WAIT)); // Set Implicit Wait.
   }
 
   @AfterMethod

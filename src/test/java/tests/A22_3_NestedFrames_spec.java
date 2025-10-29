@@ -23,7 +23,6 @@ public class A22_3_NestedFrames_spec {
 
   private static WebDriver driver;
   private static MainMethods mainMethods;
-  private static Configuration config;
   private static A22_3_po page;
   private static String baseURL;
   private static String url;
@@ -47,12 +46,11 @@ public class A22_3_NestedFrames_spec {
   public void setUp() {
     driver = new ChromeDriver();
     mainMethods = new MainMethods(driver);
-    config = new Configuration();
     page = new A22_3_po(driver);
     baseURL = "https://demoqa.com/";
     url = baseURL + "nestedframes";
     driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(config.timeOut)); // Set Implicit Wait.
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Configuration.Timeouts.IMPLICIT_WAIT)); // Set Implicit Wait.
   }
 
   @AfterClass

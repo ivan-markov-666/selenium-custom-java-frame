@@ -3,12 +3,12 @@
 <suite name="Parallel execution" parallel="tests" thread-count="2">
 <test name="Test 1">
 	<classes>
-		<class name="tests.A24_3_ClassAnotationsExample"></class>
+		<class name="tests.A24_1_WorkingWithTables_spec"></class>
 	</classes>
 </test>
 <test name="Test 2">
 	<classes>
-		<class name="tests.A24_4_ClassAnotationsExample"></class>
+		<class name="tests.A24_2_WorkingWithTables_spec"></class>
 	</classes>
 </test>
 </suite>

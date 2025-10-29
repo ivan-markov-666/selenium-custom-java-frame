@@ -38,7 +38,6 @@ public class A20_5_FillingTheForm_spec {
 
   private static WebDriver driver;
   private static A20_5_po element;
-  private static Configuration config;
   private static Faker faker;
   private static String baseURL;
   private static String url;
@@ -79,7 +78,7 @@ public class A20_5_FillingTheForm_spec {
     element.dateOfBirth.sendKeys("09 Sep 1964");
     element.dateOfBirth.sendKeys(Keys.ESCAPE);
     element.hobbie.click();
-    element.uploadFile.sendKeys(config.uploadThisFilePath + config.uploadThisFileName);
+    element.uploadFile.sendKeys(Configuration.Files.UPLOAD_FILE_PATH);
     element.currentAddress.sendKeys(faker.lorem().sentence(12, 2) + Keys.ENTER + faker.lorem().sentence(24, 2));
     element.submitButton.sendKeys(Keys.ENTER);
   }
@@ -90,10 +89,9 @@ public class A20_5_FillingTheForm_spec {
     faker = new Faker();
     baseURL = "https://demoqa.com/";
     element = new A20_5_po(driver);
-    config = new Configuration();
     url = baseURL + "automation-practice-form";
     driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(config.timeOut)); // Set Implicit Wait.
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Configuration.Timeouts.IMPLICIT_WAIT)); // Set Implicit Wait.
     driver.get(url);
   }
 

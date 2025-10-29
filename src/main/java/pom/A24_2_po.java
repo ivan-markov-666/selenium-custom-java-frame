@@ -19,14 +19,18 @@ import custom_methods.MainMethods;
 public class A24_2_po {
 
   public WebDriver driver;
-  private MainMethods mainMethods = new MainMethods(driver);
-  private SoftAssert softassert = new SoftAssert();
-  private Faker faker = new Faker();
-  private Random random = new Random();
+  private MainMethods mainMethods;
+  private SoftAssert softassert;
+  private Faker faker;
+  private Random random;
 
   public A24_2_po(WebDriver driver) {
     this.driver = driver;
-    PageFactory.initElements(driver, this); // we need this to be declare here. Without this we will not be able to use the @FindBy annotation.
+    this.mainMethods = new MainMethods(driver);  // Инициализирай тук
+    this.softassert = new SoftAssert();
+    this.faker = new Faker();
+    this.random = new Random();
+    PageFactory.initElements(driver, this);
   }
 
   // Declare a selectors here.

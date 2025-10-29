@@ -34,7 +34,6 @@ public class A20_1_FillingTheForm_spec {
   private WebDriver driver;
   private String baseURL;
   private String url;
-  private Configuration config;
 
   /*
    * This example shows how:
@@ -59,7 +58,7 @@ public class A20_1_FillingTheForm_spec {
     WebElement hobbie = driver.findElement(By.xpath("//*[@id='hobbies-checkbox-1']/following-sibling::label"));
     hobbie.click();
     WebElement uploadFile = driver.findElement(By.xpath("//*[@id='uploadPicture']"));
-    uploadFile.sendKeys(config.uploadThisFilePath + config.uploadThisFileName);
+    uploadFile.sendKeys(Configuration.Files.UPLOAD_FILE_PATH);
     WebElement currentAddress = driver.findElement(By.xpath("//*[@id='currentAddress']"));
     currentAddress.sendKeys("test" + Keys.ENTER + "test2");
     WebElement submitButton = driver.findElement(By.xpath("//*[@id='submit']"));
@@ -69,11 +68,10 @@ public class A20_1_FillingTheForm_spec {
   @BeforeClass
   public void setUp() {
     driver = new ChromeDriver();
-    config = new Configuration();
     baseURL = "https://demoqa.com/";
     url = baseURL + "automation-practice-form";
     driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(config.timeOut)); // Set Implicit Wait.
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Configuration.Timeouts.IMPLICIT_WAIT)); // Set Implicit Wait.
     driver.get(url);
   }
 

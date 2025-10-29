@@ -43,7 +43,6 @@ public class A20_4_FillingTheForm_spec {
   private static String baseURL;
   private static String url;
   private static String clickboardData;
-  private static Configuration config;
 
   /*
    * This example shows how:
@@ -89,7 +88,7 @@ public class A20_4_FillingTheForm_spec {
     WebElement hobbie = driver.findElement(locator.hobbie);
     hobbie.click();
     WebElement uploadFile = driver.findElement(locator.uploadFile);
-    uploadFile.sendKeys(config.uploadThisFilePath + config.uploadThisFileName);
+    uploadFile.sendKeys(Configuration.Files.UPLOAD_FILE_PATH);
     WebElement currentAddress = driver.findElement(locator.currentAddress);
     currentAddress.sendKeys(faker.lorem().sentence(12, 2) + Keys.ENTER + faker.lorem().sentence(24, 2));
     WebElement submitButton = driver.findElement(locator.submitButton);
@@ -99,13 +98,12 @@ public class A20_4_FillingTheForm_spec {
   @BeforeClass
   public void setUp() {
     driver = new ChromeDriver();
-    config = new Configuration();
     faker = new Faker();
     baseURL = "https://demoqa.com/";
     locator = new A20_4_po(); // Create a new constructor for POM class.
     url = baseURL + "automation-practice-form";
     driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(config.timeOut)); // Set Implicit Wait.
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Configuration.Timeouts.IMPLICIT_WAIT)); // Set Implicit Wait.
     driver.get(url);
   }
 

@@ -38,7 +38,6 @@ public class A20_6_FillingTheForm_spec {
   private static WebDriver driver;
   private static MainMethods mainMethods;
   private static OtherMethods otherMethods;
-  private static Configuration config;
   private static A20_6_po element;
   private static Faker faker;
   private static String baseURL;
@@ -73,7 +72,7 @@ public class A20_6_FillingTheForm_spec {
     element.dateOfBirth.sendKeys("09 Sep 1964");
     element.dateOfBirth.sendKeys(Keys.ESCAPE);
     element.hobbie.click();
-    element.uploadFile.sendKeys(config.uploadThisFilePath + config.uploadThisFileName);
+    element.uploadFile.sendKeys(Configuration.Files.UPLOAD_FILE_PATH);
     element.currentAddress.sendKeys(faker.lorem().sentence(12, 2) + Keys.ENTER + faker.lorem().sentence(24, 2));
     element.submitButton.sendKeys(Keys.ENTER);
   }
@@ -100,7 +99,7 @@ public class A20_6_FillingTheForm_spec {
     mainMethods.fillWithTextWithoutClearing("09 Sep 1964", element.dateOfBirth);
     element.dateOfBirth.sendKeys(Keys.ESCAPE);
     mainMethods.clickCheckBoxRadioButtonWithoutVerify(element.hobbie);
-    element.uploadFile.sendKeys(config.uploadThisFilePath + config.uploadThisFileName);
+    element.uploadFile.sendKeys(Configuration.Files.UPLOAD_FILE_PATH);
     mainMethods.fillWithText(faker.lorem().sentence(24, 5), element.currentAddress);
     mainMethods.clickEnterButton(element.submitButton, element.confirmTextAutomationPracticeForm_PopUp);
   }
@@ -110,14 +109,13 @@ public class A20_6_FillingTheForm_spec {
     driver = new ChromeDriver();
     mainMethods = new MainMethods(driver);
     otherMethods = new OtherMethods();
-    config = new Configuration();
     element = new A20_6_po(driver);
     faker = new Faker();
     baseURL = "https://demoqa.com/";
     url = baseURL + "upload-download";
     teMinutesMailUrl = "https://10minemail.com/";
     driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(config.timeOut)); // Set Implicit Wait.
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Configuration.Timeouts.IMPLICIT_WAIT)); // Set Implicit Wait.
     driver.get(url);
   }
 

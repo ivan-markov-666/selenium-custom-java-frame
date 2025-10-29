@@ -17,6 +17,8 @@ package tests;
 
 import org.testng.annotations.Test;
 import base.BaseTestClass;
+import configuration.Configuration;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -69,7 +71,7 @@ public class A20_8_FillingTheForm_spec extends BaseTestClass {
       page.hobbie3
     }; // Create a new collection with 'Hobbies' values.
     String hobbiesExpectedResult = null;
-    String uploadFile = config.uploadThisFilePath + config.uploadThisFileName;
+    String uploadFile = Configuration.Files.UPLOAD_FILE_PATH;
     String currentAddress = faker.lorem().sentence(24, 5);
     String staetAndCity = null;
 

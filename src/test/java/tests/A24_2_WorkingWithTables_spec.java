@@ -27,7 +27,6 @@ public class A24_2_WorkingWithTables_spec {
   private static WebDriver driver;
   private static MainMethods mainMethods;
   private static OtherMethods otherMethods;
-  private static Configuration config;
   private static Random random;
   private static A24_2_po page;
   private static Faker faker;
@@ -87,14 +86,13 @@ public class A24_2_WorkingWithTables_spec {
     driver = new ChromeDriver();
     mainMethods = new MainMethods(driver);
     otherMethods = new OtherMethods();
-    config = new Configuration();
     page = new A24_2_po(driver);
     random = new Random();
     faker = new Faker();
     baseURL = "https://demoqa.com/";
     url = baseURL + "webtables";
     driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(config.timeOut)); // Set Implicit Wait.
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Configuration.Timeouts.IMPLICIT_WAIT)); // Set Implicit Wait.
   }
 
   @AfterClass

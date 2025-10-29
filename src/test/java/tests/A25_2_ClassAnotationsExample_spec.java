@@ -25,7 +25,6 @@ public class A25_2_ClassAnotationsExample_spec {
 
   private static WebDriver driver;
   private static MainMethods mainMethods;
-  private static Configuration config;
   private static A24_2_po page;
   private static String baseURL;
   private static String url;
@@ -65,10 +64,9 @@ public class A25_2_ClassAnotationsExample_spec {
   public void beforeTest() {
     driver = new ChromeDriver();
     mainMethods = new MainMethods(driver);
-    config = new Configuration();
     page = new A24_2_po(driver);
     driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(config.timeOut)); // Set Implicit Wait.
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Configuration.Timeouts.IMPLICIT_WAIT)); // Set Implicit Wait.
   }
 
   // This will be executed after every @test annotated method.

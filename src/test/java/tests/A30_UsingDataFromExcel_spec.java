@@ -7,6 +7,7 @@ package tests;
 
 import org.testng.annotations.Test;
 import base.BaseTestClass;
+import configuration.Configuration;
 import dataDrivenTesting_methods.ImportDataFromExcel;
 
 import org.testng.annotations.BeforeClass;
@@ -33,7 +34,7 @@ public class A30_UsingDataFromExcel_spec extends BaseTestClass {
   public void beforeClass() {
     setUp(null);
     excel = new ImportDataFromExcel(); // Create a new constructor for ImportDataFromExcel;
-    excel.setExcelFile(config.excelFilePath + config.excelFileName, "Sheet1"); // Execute the setExcelFile method. This is used to set the direction of the Excel file path and Excel sheet name.
+    excel.setExcelFile(Configuration.DataDriven.EXCEL_FILE_PATH, "Sheet1"); // Execute the setExcelFile method. This is used to set the direction of the Excel file path and Excel sheet name.
   }
 
   // Marks a method as supplying data for a test method. The annotated method must return an Object[][] where each Object[] can be assigned the parameter list of the test method. The @Test method that wants to receive data from this DataProvider needs to use a dataProvider name equals to the name of this annotation.

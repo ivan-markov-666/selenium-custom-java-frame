@@ -37,7 +37,6 @@ public class A20_2_FillingTheForm_spec {
   private static Faker faker;
   private static String baseURL;
   private String url;
-  private static Configuration config;
 
   /*
    * This example shows how
@@ -62,7 +61,7 @@ public class A20_2_FillingTheForm_spec {
     WebElement hobbie = driver.findElement(By.xpath("//*[@id='hobbies-checkbox-1']/following-sibling::label"));
     hobbie.click();
     WebElement uploadFile = driver.findElement(By.xpath("//*[@id='uploadPicture']"));
-    uploadFile.sendKeys(config.uploadThisFilePath + config.uploadThisFileName);
+    uploadFile.sendKeys(Configuration.Files.UPLOAD_FILE_PATH);
     WebElement currentAddress = driver.findElement(By.xpath("//*[@id='currentAddress']"));
     currentAddress.sendKeys(faker.lorem().sentence(12, 2) + Keys.ENTER + faker.lorem().sentence(24, 2));
     WebElement submitButton = driver.findElement(By.xpath("//*[@id='submit']"));
@@ -94,7 +93,7 @@ public class A20_2_FillingTheForm_spec {
     WebElement hobbie = driver.findElement(By.xpath("//*[@id='hobbies-checkbox-1']/following-sibling::label"));
     hobbie.click();
     WebElement uploadFile = driver.findElement(By.xpath("//*[@id='uploadPicture']"));
-    uploadFile.sendKeys(config.uploadThisFilePath + config.uploadThisFileName);
+    uploadFile.sendKeys(Configuration.Files.UPLOAD_FILE_PATH);
     WebElement currentAddress = driver.findElement(By.xpath("//*[@id='currentAddress']"));
     currentAddress.sendKeys(faker.lorem().sentence(12, 2) + Keys.ENTER + faker.lorem().sentence(24, 2));
     WebElement submitButton = driver.findElement(By.xpath("//*[@id='submit']"));
@@ -104,12 +103,11 @@ public class A20_2_FillingTheForm_spec {
   @BeforeMethod
   public void setUp() {
     driver = new ChromeDriver();
-    config = new Configuration();
     faker = new Faker();
     baseURL = "https://demoqa.com/";
     url = baseURL + "automation-practice-form";
     driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(config.timeOut)); // Set Implicit Wait.
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Configuration.Timeouts.IMPLICIT_WAIT)); // Set Implicit Wait.
     driver.get(url);
   }
 

@@ -22,7 +22,6 @@ public class A14_1_UploadFile_spec {
 
   private static WebDriver driver;
   private static String baseURL;
-  private static Configuration config; // Declare a configuration variable.
 
   /*
    * This example shows how:
@@ -31,13 +30,12 @@ public class A14_1_UploadFile_spec {
   @Test
   public void uploadFile() {
     WebElement uploadFile = driver.findElement(By.xpath("//*[@id='uploadFile']"));
-    uploadFile.sendKeys(config.uploadThisFilePath + config.uploadThisFileName);
+    uploadFile.sendKeys(Configuration.Files.UPLOAD_FILE_PATH);
   }
 
   @BeforeClass
   public void setUp() throws Exception {
     driver = new ChromeDriver();
-    config = new Configuration(); // Create a constructor for configuration class.
     baseURL = "https://demoqa.com/";
     driver.manage().window().maximize();
     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(45)); // Set Implicit Wait.

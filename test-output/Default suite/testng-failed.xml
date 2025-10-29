@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tests.A20_1_FillingTheForm_spec">
+      <class name="tests.A26_ProvideParametersToTestMethod_spec">
         <methods>
+          <include name="beforeClass"/>
           <include name="afterClass"/>
-          <include name="setUp"/>
-          <include name="fillingTheFormWithCorrectDateFirstExample"/>
+          <include name="getParametersXMLfiles"/>
         </methods>
-      </class> <!-- tests.A20_1_FillingTheForm_spec -->
+      </class> <!-- tests.A26_ProvideParametersToTestMethod_spec -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

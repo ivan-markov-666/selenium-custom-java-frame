@@ -22,7 +22,6 @@ public class A25_1_ClassAnotationsExample_spec {
 
   private static WebDriver driver;
   private static MainMethods mainMethods;
-  private static Configuration config;
   private static A25_1_po page;
   private static String baseURL;
   private static String url;
@@ -43,12 +42,11 @@ public class A25_1_ClassAnotationsExample_spec {
   public void setUp() {
     driver = new ChromeDriver();
     mainMethods = new MainMethods(driver);
-    config = new Configuration();
     page = new A25_1_po(driver);
     baseURL = "https://demoqa.com/";
     url = baseURL + "text-box";
     driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(config.timeOut)); // Set Implicit Wait.
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Configuration.Timeouts.IMPLICIT_WAIT)); // Set Implicit Wait.
   }
 
   @AfterClass

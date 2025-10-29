@@ -27,9 +27,9 @@ public class A18_ElementNotFound_spec {
    */
   @Test
   public void checkForElement() {
-    boolean validResult = mainMethod.isElemenstPresent("(//*[contains(text(),'Valid image')]/following-sibling::img)[2]", "xpath");
+	boolean validResult = mainMethod.isElementPresent("(//*[contains(text(),'Valid image')]/following-sibling::img)[2]", "xpath");
     System.out.println("The result is: " + validResult);
-    boolean invalidResult = mainMethod.isElemenstPresent("(//*[contains(text(),'Valid image')]/following-sibling::img)[3]", "xpath");
+    boolean invalidResult = mainMethod.isElementPresent("(//*[contains(text(),'Valid image')]/following-sibling::img)[3]", "xpath");
     System.out.println("The result is: " + invalidResult);
   }
 

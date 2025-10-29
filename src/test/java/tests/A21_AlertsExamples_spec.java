@@ -24,7 +24,6 @@ public class A21_AlertsExamples_spec {
 
   private static WebDriver driver; // Declare a WebDriver.
   private static MainMethods mainMethods; // Declare a MainMethods.
-  private static Configuration config; // Declare a Configuration.
   private static A21_po page; // Declare a page object model.
   private static String baseURL;
   private static String url;
@@ -37,7 +36,7 @@ public class A21_AlertsExamples_spec {
   public void acceptTheAlertByAcceptMethod() {
     mainMethods.navigateURL(url, page.clickMeButton1); // Navigate to the URL address.
     page.clickMeButton1.click(); // Click on the "Click Me" button.
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(config.timeOut)); // Declare a wait.
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Configuration.Timeouts.IMPLICIT_WAIT)); // Declare a wait.
     wait.until(ExpectedConditions.alertIsPresent()); // Wait until the pop-up is present.
     String getThePopUpText = driver.switchTo().alert().getText(); // Get the text of the pop-up window.
     System.out.println("The Alert message is: '" + getThePopUpText + "'"); // Print the text from the pop-up to the console log.
@@ -52,7 +51,7 @@ public class A21_AlertsExamples_spec {
   public void cancelTheAlertByDismissMethod() {
     mainMethods.navigateURL(url, page.clickMeButton1); // Navigate to the URL address.
     page.clickMeButton1.click(); // Click on the "Click Me" button.
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(config.timeOut)); // Declare a wait.
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Configuration.Timeouts.IMPLICIT_WAIT)); // Declare a wait.
     wait.until(ExpectedConditions.alertIsPresent()); // Wait until the pop-up is present.
     driver.switchTo().alert().dismiss(); // Press on the "Cancel" button of the pop-up window.
   }
@@ -66,7 +65,7 @@ public class A21_AlertsExamples_spec {
   public void sendTextTOAlert() {
     mainMethods.navigateURL(url, page.clickMeButton2); // Navigate to the URL address.
     page.clickMeButton2.click(); // Click on the "Click Me" button.
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(config.timeOut)); // Declare a wait.
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Configuration.Timeouts.IMPLICIT_WAIT)); // Declare a wait.
     wait.until(ExpectedConditions.alertIsPresent()); // Wait until the pop-up is present.
     driver.switchTo().alert().sendKeys("testing Text"); // Fill with the text into the alert window.
     driver.switchTo().alert().accept(); // Press on the "OK" button of the pop-up window.
@@ -79,7 +78,7 @@ public class A21_AlertsExamples_spec {
   @Test
   public void acceptAlertWithMethod() {
     mainMethods.navigateURL(url, page.clickMeButton1); // Navigate to the URL address.
-    mainMethods.AcceptTheAlert(page.clickMeButton1, "Do you confirm action?"); // Execute the method to accept the alert.
+    mainMethods.acceptTheAlert(page.clickMeButton1, "Do you confirm action?"); // Execute the method to accept the alert.
   }
 
   /*
@@ -89,7 +88,7 @@ public class A21_AlertsExamples_spec {
   @Test
   public void dismissAlertWithMethod() {
     mainMethods.navigateURL(url, page.clickMeButton1); // Navigate to the URL address.
-    mainMethods.DismissTheAlert(page.clickMeButton1, "Do you confirm action?"); // Execute the method to dismiss the alert.
+    mainMethods.dismissTheAlert(page.clickMeButton1, "Do you confirm action?"); // Execute the method to dismiss the alert.
   }
 
   /*
@@ -106,12 +105,11 @@ public class A21_AlertsExamples_spec {
   public void setUp() {
     driver = new ChromeDriver();
     mainMethods = new MainMethods(driver);
-    config = new Configuration();
     page = new A21_po(driver);
     baseURL = "https://demoqa.com/";
     url = baseURL + "alerts";
     driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(config.timeOut)); // Set Implicit Wait.
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Configuration.Timeouts.IMPLICIT_WAIT)); // Set Implicit Wait.
   }
 
   @AfterMethod

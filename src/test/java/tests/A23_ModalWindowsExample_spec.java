@@ -23,7 +23,6 @@ public class A23_ModalWindowsExample_spec {
 
   private static WebDriver driver;
   private static MainMethods mainMethods;
-  private static Configuration config;
   private static A23_po page;
   private static String baseURL;
   private static String url;
@@ -46,12 +45,11 @@ public class A23_ModalWindowsExample_spec {
   public void setUp() {
     driver = new ChromeDriver();
     mainMethods = new MainMethods(driver);
-    config = new Configuration();
     page = new A23_po(driver);
     baseURL = "https://demoqa.com/";
     url = baseURL + "modal-dialogs";
     driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(config.timeOut)); // Set Implicit Wait.
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Configuration.Timeouts.IMPLICIT_WAIT)); // Set Implicit Wait.
   }
 
   @AfterClass

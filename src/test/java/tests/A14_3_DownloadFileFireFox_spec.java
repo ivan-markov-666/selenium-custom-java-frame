@@ -25,7 +25,6 @@ public class A14_3_DownloadFileFireFox_spec {
 
   private static WebDriver driver;
   private static String baseURL;
-  private static Configuration config;
   private static WaitTypes wait;
 
   /*
@@ -42,11 +41,10 @@ public class A14_3_DownloadFileFireFox_spec {
 
   @BeforeClass
   public void setUp() throws Exception {
-    config = new Configuration();
 
     // Define Download Option for FireFox Browser;
     FirefoxProfile profile = new FirefoxProfile();
-    profile.setPreference("browser.download.dir", config.downloadFolderPath);
+    profile.setPreference("browser.download.dir", Configuration.Paths.DOWNLOADS);
     profile.setPreference("browser.download.folderList", 2);
     profile.setPreference("browser.helperApps.neverAsk.saveToDisk", "image/jpeg");
     profile.setPreference("browser.download.manager.showWhenStarting", false);
