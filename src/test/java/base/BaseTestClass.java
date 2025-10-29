@@ -44,11 +44,11 @@ public class BaseTestClass {
     softassert = new SoftAssert(); // Declare an instance for softAssert.
     faker = new Faker(); // Declare an instance for Faker.
     random = new Random(); // Declare an instance for Random.
-    
+
     /** This if-else statement is used for configuration about usage of system property or environment variable for browser drivers. */
     if ("yes".equals(Configuration.Browser.USE_SYSTEM_PROPERTY)) {
       otherMethods.messagesMethod("Message: We are using System Property for setting up the browser driver path.");
-      
+
       /** This if-else statement is used for setting up the system property for browser driver. */
       if ("firefox".equals(Configuration.Browser.DEFAULT)) {
         System.setProperty("webdriver.gecko.driver", Configuration.Paths.DRIVERS + Configuration.Browser.FIREFOX_DRIVER_NAME);
@@ -63,7 +63,7 @@ public class BaseTestClass {
     } else {
       System.out.println("ERROR! Invalid value for 'USE_SYSTEM_PROPERTY': '" + Configuration.Browser.USE_SYSTEM_PROPERTY + "'. Please set it to 'yes' or 'no' in the Configuration.Browser class.");
     }
-    
+
     /** This if-else statement is used for starting the browser driver with WebDriverManager automatic setup. */
     if ("firefox".equals(Configuration.Browser.DEFAULT)) {
       WebDriverManager.firefoxdriver().setup(); // Automatically setup the correct Firefox driver version.
@@ -74,7 +74,7 @@ public class BaseTestClass {
     } else {
       System.out.println("ERROR! Unsupported browser: '" + Configuration.Browser.DEFAULT + "'. Please set 'DEFAULT' variable to 'firefox' or 'chrome' in the Configuration.Browser class.");
     }
-    
+
     mainMethods = new MainMethods(driver); // Declare a constructor for MainMethods.
     wait = new WaitTypes(driver); // Declare a constructor for WaitTypes.
     action = new Actions(driver); // Declare a constructor for Actions.

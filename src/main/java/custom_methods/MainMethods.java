@@ -26,6 +26,14 @@ public class MainMethods {
   private WaitTypes wait;
   private OtherMethods otherMethods;
 
+  // ==================== CONSTANTS ====================
+
+  /** Call stack depth for getting caller method/class name from within a method. */
+  private static final int CALL_STACK_DEPTH_FROM_METHOD = 3;
+
+  /** Call stack depth for getting caller class name from @AfterMethod. */
+  private static final int CALL_STACK_DEPTH_FROM_AFTER_METHOD = 2;
+
   /**
    * Constructor for MainMethods.
    * Initializes all dependencies with the provided WebDriver instance.
@@ -606,9 +614,9 @@ public class MainMethods {
    * Accept the Alert (pop-up window).
    * 
    * @param element			- provide an WebElement. The click() method on the element should open an alert window.
-   * @param expectedReult	- provide a String that should be the alert text. This will be used for expected result.
+   * @param expectedResult	- provide a String that should be the alert text. This will be used for expected result.
    */
-  public void AcceptTheAlert(WebElement element, String expectedReult) {
+  public void acceptTheAlert(WebElement element, String expectedResult) {
     String methodName = new Object() {}.getClass().getEnclosingMethod().getName();
     String className = this.getClass().getSimpleName();
     try {
@@ -616,9 +624,9 @@ public class MainMethods {
       WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Configuration.Timeouts.EXPLICIT_WAIT));
       wait.until(ExpectedConditions.alertIsPresent()); // Wait until the pop-up is present.
       String getThePopUpText = driver.switchTo().alert().getText(); // Get the text of the pop-up window.
-      Assert.assertEquals(getThePopUpText, expectedReult); // Make an assertion to make sure that the pop-up is opened.
+      Assert.assertEquals(getThePopUpText, expectedResult); // Make an assertion to make sure that the pop-up is opened.
       driver.switchTo().alert().accept(); // Press on the "OK" button of the pop-up window.
-      otherMethods.messagesMethod("Message: The WebElement '" + element + "' is clicked and ALERT pop-up window is opened. The automation is switching to the ALERT pop-up window. The automation is getting the ALERT pop-up window text '" + getThePopUpText + "'. Asserting the '" + getThePopUpText + "' with '" + expectedReult + "' to make sure that the method was compleated correctly. Click on the 'OK' button to accept the ALERT pop-up window.");
+      otherMethods.messagesMethod("Message: The WebElement '" + element + "' is clicked and ALERT pop-up window is opened. The automation is switching to the ALERT pop-up window. The automation is getting the ALERT pop-up window text '" + getThePopUpText + "'. Asserting the '" + getThePopUpText + "' with '" + expectedResult + "' to make sure that the method was compleated correctly. Click on the 'OK' button to accept the ALERT pop-up window.");
     } catch (Exception e) {
       System.out.println("ERROR! The operadion was not compleate. Please review the '" + methodName +
         "' method from '" + className + "' class. Error message: " + e); // This message will be shown if something is gone wrong with the method.
@@ -632,7 +640,7 @@ public class MainMethods {
    * @param element			- provide an WebElement. The click() method on the element should open an alert window.
    * @param expectedReult	- provide a String that should be the alert text. This will be used for expected result.
    */
-  public void DismissTheAlert(WebElement element, String expectedReult) {
+  public void dismissTheAlert(WebElement element, String expectedReult) {
     String methodName = new Object() {}.getClass().getEnclosingMethod().getName();
     String className = this.getClass().getSimpleName();
     try {
@@ -768,8 +776,8 @@ public class MainMethods {
     String methodName = new Object() {}.getClass().getEnclosingMethod().getName();
     String className = this.getClass().getSimpleName();
     try {
-      String getCalledMethodName = otherMethods.getCallerMethodName(3);
-      String getCalledClassName = otherMethods.getCallerClassName(3);
+      String getCalledMethodName = otherMethods.getCallerMethodName(CALL_STACK_DEPTH_FROM_METHOD);
+      String getCalledClassName = otherMethods.getCallerClassName(CALL_STACK_DEPTH_FROM_METHOD);
       String filename = Configuration.Screenshots.METHOD_PREFIX + getCalledMethodName +
         "_from_testClass_" + getCalledClassName +
         Configuration.Screenshots.SUFFIX + otherMethods.unixTime() +
@@ -791,7 +799,7 @@ public class MainMethods {
     String methodName = new Object() {}.getClass().getEnclosingMethod().getName();
     String className = this.getClass().getSimpleName();
     try {
-      String getCalledClassName = otherMethods.getCallerClassName(2);
+      String getCalledClassName = otherMethods.getCallerClassName(CALL_STACK_DEPTH_FROM_AFTER_METHOD);
       String filename = Configuration.Screenshots.FAILURE_PREFIX + executedMethodName +
         "_from_testClass_" + getCalledClassName +
         Configuration.Screenshots.SUFFIX + otherMethods.unixTime() +

@@ -83,13 +83,13 @@ public class OtherMethods {
    * @param randomUniqueNumbers - provide how many unique random numbers should be created. The value should be equal or less than 'maxNumber' value. The first value starts from 0.
    * @return - the randomly generated integer will be returned.
    */
-  public ArrayList<Integer> uniqueRandomNumber(int maxNumber, int randomUniqueNumbers) {
+  public ArrayList < Integer > uniqueRandomNumber(int maxNumber, int randomUniqueNumbers) {
     String methodName = new Object() {}.getClass().getEnclosingMethod().getName(); // Get the name of the current method.
     String className = this.getClass().getSimpleName(); // Get the name of the class.
     try {
       // Generate unique random number.
-      ArrayList<Integer> numbers = new ArrayList<Integer>(); // Define ArrayList to hold Integer objects
-      ArrayList<Integer> finalResult = new ArrayList<Integer>(); // Define ArrayList to hold the unique generated integers.
+      ArrayList < Integer > numbers = new ArrayList < Integer > (); // Define ArrayList to hold Integer objects
+      ArrayList < Integer > finalResult = new ArrayList < Integer > (); // Define ArrayList to hold the unique generated integers.
       for (int i = 0; i <= maxNumber; i++) {
         numbers.add(i);
       }
@@ -224,14 +224,14 @@ public class OtherMethods {
    * @param destinationPath - provide the path of the folder.
    * @return - list of all file names in the folder.
    */
-  public ArrayList<String> returnAllFilesFromFolder(String destinationPath) {
+  public ArrayList < String > returnAllFilesFromFolder(String destinationPath) {
     String methodName = new Object() {}.getClass().getEnclosingMethod().getName(); // Get the name of the current method.
     String className = this.getClass().getSimpleName(); // Get the name of the class.
     try {
       messagesMethod("Message: locate all files from folder '" + destinationPath + "' .");
       File folder = new File(destinationPath);
       File[] listOfFiles = folder.listFiles();
-      ArrayList<String> allFiles = new ArrayList<String>();
+      ArrayList < String > allFiles = new ArrayList < String > ();
       for (File file: listOfFiles) {
         if (file.isFile()) {
           allFiles.add(file.getName());

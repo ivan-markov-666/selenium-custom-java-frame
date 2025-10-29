@@ -22,12 +22,12 @@ public class WaitTypes {
    * @param driver - the WebDriver instance to be used for waiting operations.
    */
   public WaitTypes(WebDriver driver) {
-	  if (driver == null) {
-	    throw new IllegalArgumentException("WebDriver cannot be null!");
-	  }
-	  this.driver = driver;
-	  this.otherMethods = new OtherMethods();
-	}
+    if (driver == null) {
+      throw new IllegalArgumentException("WebDriver cannot be null!");
+    }
+    this.driver = driver;
+    this.otherMethods = new OtherMethods();
+  }
 
   /**
    * Add here more waiters in this class if its needed.
@@ -47,7 +47,7 @@ public class WaitTypes {
       otherMethods.messagesMethod("Message: Static Wait is executed for " + timeout + " milliseconds.");
     } catch (InterruptedException e) {
       System.out.println("ERROR! The operation was not complete. Please review the '" + methodName +
-        "' method from '" + className + "' class. Error message: " + e); 
+        "' method from '" + className + "' class. Error message: " + e);
     }
   }
 
@@ -103,10 +103,10 @@ public class WaitTypes {
   public WebElement waitIsDisplayed(WebElement element) {
     try {
       otherMethods.messagesMethod("Message: Waiting for element '" + element + "' to be displayed (timeout: " + Configuration.Timeouts.EXPLICIT_WAIT + " seconds).");
-      
+
       WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Configuration.Timeouts.EXPLICIT_WAIT));
       wait.until(ExpectedConditions.visibilityOf(element));
-      
+
       otherMethods.messagesMethod("Message: The element '" + element + "' is displayed.");
     } catch (Exception e) {
       String errorMsg = "ERROR! The element is not DISPLAYED after waiting " + Configuration.Timeouts.EXPLICIT_WAIT + " seconds. Error message: " + e.getMessage();
@@ -128,10 +128,10 @@ public class WaitTypes {
   public WebElement waitIsEnabled(WebElement element) {
     try {
       otherMethods.messagesMethod("Message: Waiting for element '" + element + "' to be enabled (timeout: " + Configuration.Timeouts.EXPLICIT_WAIT + " seconds).");
-      
+
       WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Configuration.Timeouts.EXPLICIT_WAIT));
       wait.until(driver -> element.isEnabled());
-      
+
       otherMethods.messagesMethod("Message: The element '" + element + "' is enabled.");
     } catch (Exception e) {
       String errorMsg = "ERROR! The element is not ENABLED after waiting " + Configuration.Timeouts.EXPLICIT_WAIT + " seconds. Error message: " + e.getMessage();
@@ -153,10 +153,10 @@ public class WaitTypes {
   public WebElement waitIsSelected(WebElement element) {
     try {
       otherMethods.messagesMethod("Message: Waiting for element '" + element + "' to be selected (timeout: " + Configuration.Timeouts.EXPLICIT_WAIT + " seconds).");
-      
+
       WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Configuration.Timeouts.EXPLICIT_WAIT));
       wait.until(ExpectedConditions.elementToBeSelected(element));
-      
+
       otherMethods.messagesMethod("Message: The element '" + element + "' is selected.");
     } catch (Exception e) {
       String errorMsg = "ERROR! The element is not SELECTED after waiting " + Configuration.Timeouts.EXPLICIT_WAIT + " seconds. Error message: " + e.getMessage();
