@@ -72,9 +72,7 @@ public class ImportDataFromExcel {
    * @param firstCellValue - provide the name of the table.
    * @return - array of boundary cells.
    */
-  @SuppressWarnings("unused")
   public XSSFCell[] findCells(String firstCellValue) {
-    String position = "begin";
     XSSFCell[] cells = new XSSFCell[2];
     String methodName = new Object() {}.getClass().getEnclosingMethod().getName(); // Get the name of the current method.
     String className = this.getClass().getSimpleName(); // Get the name of the class.
@@ -96,7 +94,7 @@ public class ImportDataFromExcel {
 
           if (firstCellValue.equals(cellValueInString)) {
             cells[0] = (XSSFCell) cell;
-            position = "end";
+            // ✅ Премахнато: position = "end"; - unused code
           } else {
             cells[1] = (XSSFCell) cell;
           }
