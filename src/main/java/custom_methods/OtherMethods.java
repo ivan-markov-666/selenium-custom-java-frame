@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.security.SecureRandom;
+import java.util.concurrent.ThreadLocalRandom;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -57,22 +57,22 @@ public class OtherMethods {
    * @return							- the random generated string will be returned.
    */
   public String randomString(String stringCharacters) {
-    String methodName = new Object() {}.getClass().getEnclosingMethod().getName(); // Get the name of the current method.
-    String className = this.getClass().getSimpleName(); // Get the name of the class.
-    try {
-      SecureRandom secureRandom = new SecureRandom();
-      int len = 10;
-      StringBuilder sb = new StringBuilder(len);
-      for (int i = 0; i < len; i++)
-        sb.append(stringCharacters.charAt(secureRandom.nextInt(stringCharacters.length())));
-      messagesMetohd("Message: Random string is generated '" + sb.toString() + "'. The string was created by using the following characted '" + stringCharacters + "'.");
-      return sb.toString();
-    } catch (Exception e) {
-      System.out.println("ERROR! The operadion was not compleate. Please review the '" + methodName +
-        "' method from '" + className + "' class. Error message: " + e); // This message will be shown if something is gone wrong with the method.
-    }
-    return null;
-  }
+	  String methodName = new Object() {}.getClass().getEnclosingMethod().getName();
+	  String className = this.getClass().getSimpleName();
+	  try {
+	    ThreadLocalRandom random = ThreadLocalRandom.current();
+	    int len = 10;
+	    StringBuilder sb = new StringBuilder(len);
+	    for (int i = 0; i < len; i++)
+	    sb.append(stringCharacters.charAt(random.nextInt(stringCharacters.length())));
+	    messagesMetohd("Message: Random string is generated '" + sb.toString() + "'. The string was created by using the following characted '" + stringCharacters + "'.");
+	    return sb.toString();
+	  } catch (Exception e) {
+	    System.out.println("ERROR! The operadion was not compleate. Please review the '" + methodName +
+	      "' method from '" + className + "' class. Error message: " + e);
+	  }
+	  return null;
+	}
 
   /**
    * This method is used to generate unique random numbers.
