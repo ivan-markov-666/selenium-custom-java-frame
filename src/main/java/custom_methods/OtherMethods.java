@@ -38,7 +38,7 @@ public class OtherMethods {
       Clipboard clipboard = toolkit.getSystemClipboard();
       String clickboardData = (String) clipboard.getData(DataFlavor.stringFlavor);
       if (clickboardData != null) {
-        messagesMetohd("Message: Using the click board data. The data is : " + clickboardData);
+        messagesMethod("Message: Using the click board data. The data is : " + clickboardData);
       } else {
         System.out.println("ERROR! It seems that the click board is empty.");
       }
@@ -65,7 +65,7 @@ public class OtherMethods {
 	    StringBuilder sb = new StringBuilder(len);
 	    for (int i = 0; i < len; i++)
 	    sb.append(stringCharacters.charAt(random.nextInt(stringCharacters.length())));
-	    messagesMetohd("Message: Random string is generated '" + sb.toString() + "'. The string was created by using the following characted '" + stringCharacters + "'.");
+	    messagesMethod("Message: Random string is generated '" + sb.toString() + "'. The string was created by using the following characted '" + stringCharacters + "'.");
 	    return sb.toString();
 	  } catch (Exception e) {
 	    System.out.println("ERROR! The operadion was not compleate. Please review the '" + methodName +
@@ -95,7 +95,7 @@ public class OtherMethods {
       for (int j = 0; j <= randomUniqueNumbers; j++) {
         finalResult.add(numbers.get(j)); // Add the collection to the array.
       }
-      messagesMetohd("Message: Random integers is generated '" + finalResult + "'.");
+      messagesMethod("Message: Random integers is generated '" + finalResult + "'.");
       return finalResult;
     } catch (Exception e) {
       System.out.println("ERROR! The operadion was not compleate. Please review the '" + methodName +
@@ -115,7 +115,7 @@ public class OtherMethods {
     String className = this.getClass().getSimpleName(); // Get the name of the class.
     try {
       unixTime = Instant.now().getEpochSecond(); // Generate Unix time.
-      messagesMetohd("Message: The current unix time is: " + unixTime + ".");
+      messagesMethod("Message: The current unix time is: " + unixTime + ".");
       return unixTime; // Return the Unix time value.
     } catch (Exception e) {
       System.out.println("ERROR! The operadion was not compleate. Please review the '" + methodName +
@@ -137,7 +137,7 @@ public class OtherMethods {
     String methodName = new Object() {}.getClass().getEnclosingMethod().getName(); // Get the name of the current method.
     String className = this.getClass().getSimpleName(); // Get the name of the class.
     try {
-      messagesMetohd("Message: The called method name is: " + StackWalker.getInstance().walk(s -> s.skip(depth).findFirst()).get().getMethodName() + ".");
+      messagesMethod("Message: The called method name is: " + StackWalker.getInstance().walk(s -> s.skip(depth).findFirst()).get().getMethodName() + ".");
       return StackWalker.getInstance().walk(s -> s.skip(depth).findFirst()).get().getMethodName();
     } catch (Exception e) {
       System.out.println("ERROR! The operadion was not compleate. Please review the '" + methodName +
@@ -156,7 +156,7 @@ public class OtherMethods {
     String methodName = new Object() {}.getClass().getEnclosingMethod().getName(); // Get the name of the current method.
     String className = this.getClass().getSimpleName(); // Get the name of the class.
     try {
-      messagesMetohd("Message: The called class name is: " + StackWalker.getInstance().walk(s -> s.skip(depth).findFirst()).get().getClassName() + ".");
+      messagesMethod("Message: The called class name is: " + StackWalker.getInstance().walk(s -> s.skip(depth).findFirst()).get().getClassName() + ".");
       return StackWalker.getInstance().walk(s -> s.skip(depth).findFirst()).get().getClassName();
     } catch (Exception e) {
       System.out.println("ERROR! The operadion was not compleate. Please review the '" + methodName +
@@ -170,7 +170,7 @@ public class OtherMethods {
    *
    * @param message - provide the message that should be printed.
    */
-  public void messagesMetohd(String message) {
+  public void messagesMethod(String message) {
     String methodName = new Object() {}.getClass().getEnclosingMethod().getName(); // Get the name of the current method.
     String className = this.getClass().getSimpleName(); // Get the name of the class.
     try {
@@ -197,7 +197,7 @@ public class OtherMethods {
     String methodName = new Object() {}.getClass().getEnclosingMethod().getName(); // Get the name of the current method.
     String className = this.getClass().getSimpleName(); // Get the name of the class.
     try {
-      messagesMetohd("Message: file '" + oldfileNameWithPath + " will be renamed with " + newFileNameWithPath + ".");
+      messagesMethod("Message: file '" + oldfileNameWithPath + " will be renamed with " + newFileNameWithPath + ".");
       // File (or directory) with old name
       File file = new File(oldfileNameWithPath);
       // File (or directory) with new name
@@ -225,7 +225,7 @@ public class OtherMethods {
     String methodName = new Object() {}.getClass().getEnclosingMethod().getName(); // Get the name of the current method.
     String className = this.getClass().getSimpleName(); // Get the name of the class.
     try {
-      messagesMetohd("Message: locate all files from folder '" + destinationPath + "' .");
+      messagesMethod("Message: locate all files from folder '" + destinationPath + "' .");
       File folder = new File(destinationPath);
       File[] listOfFiles = folder.listFiles();
       ArrayList < String > allFiles = new ArrayList < String > ();

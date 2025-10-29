@@ -39,7 +39,7 @@ public class ImportDataFromExcel {
       // Access the Excel sheet data.
       ExcelWBook = new XSSFWorkbook(ExcelFile);
       ExcelWSheet = ExcelWBook.getSheet(sheetName);
-      otherMethods.messagesMetohd("Message: The Excel file located at '" + filePath + "' with sheet '" + sheetName + "' is loaded.");
+      otherMethods.messagesMethod("Message: The Excel file located at '" + filePath + "' with sheet '" + sheetName + "' is loaded.");
       
     } catch (Exception e) {
       System.out.println("ERROR! The operation was not complete. Please review the '" + methodName +
@@ -58,7 +58,7 @@ public class ImportDataFromExcel {
     try {
       if (ExcelWBook != null) {
         ExcelWBook.close();
-        otherMethods.messagesMetohd("Message: The Excel workbook has been closed.");
+        otherMethods.messagesMethod("Message: The Excel workbook has been closed.");
       }
     } catch (Exception e) {
       System.out.println("ERROR! The operation was not complete. Please review the '" + methodName +
@@ -102,7 +102,7 @@ public class ImportDataFromExcel {
           }
         }
       }
-      otherMethods.messagesMetohd("Message: All possible Excel cells were located.");
+      otherMethods.messagesMethod("Message: All possible Excel cells were located.");
     } catch (Exception e) {
       System.out.println("ERROR! The operation was not complete. Please review the '" + methodName +
         "' method from '" + className + "' class. Error message: " + e);
@@ -146,7 +146,7 @@ public class ImportDataFromExcel {
           }
         }
       }
-      otherMethods.messagesMetohd("Message: The data from Excel file was retrieved.");
+      otherMethods.messagesMethod("Message: The data from Excel file was retrieved.");
     } catch (Exception e) {
       System.out.println("ERROR! The operation was not complete. Please review the '" + methodName +
         "' method from '" + className + "' class. Error message: " + e);

@@ -96,7 +96,7 @@ public class MainMethods {
     String className = this.getClass().getSimpleName(); // Get the name of the class.
     
     try {
-      otherMethods.messagesMetohd("Message: Trying to find element with locator '" + locator + "' and type '" + type + "'.");
+      otherMethods.messagesMethod("Message: Trying to find element with locator '" + locator + "' and type '" + type + "'.");
       
       By by = getByLocator(locator, type); // ✅ Използваме helper метода!
       return driver.findElement(by); // ✅ Само 1 ред вместо 30!
@@ -135,7 +135,7 @@ public class MainMethods {
     String className = this.getClass().getSimpleName(); // Get the name of the class.
     
     try {
-      otherMethods.messagesMetohd("Message: Trying to find elements with locator '" + locator + "' and type '" + type + "'.");
+      otherMethods.messagesMethod("Message: Trying to find elements with locator '" + locator + "' and type '" + type + "'.");
       
       By by = getByLocator(locator, type); // ✅ Използваме helper метода!
       return driver.findElements(by); // ✅ Само 1 ред вместо 30!
@@ -158,13 +158,13 @@ public class MainMethods {
    * @param type - provide the locator type (id, xpath, cssSelector, name, linkText, partialLinkText, className, tagName).
    * @return - a boolean result. Returns 'true' if the element is available in the DOM tree, 'false' otherwise.
    */
-  public boolean isElemenstPresent(String locator, String type) {
+  public boolean isElementPresent(String locator, String type) {
     List<WebElement> elementList = getElementList(locator, type);
     int size = elementList.size();
     boolean isPresent = size > 0;
 
     if ("yes".equals(config.messages)) {
-      otherMethods.messagesMetohd("Message: Trying to find element with locator '" + locator + "' and type '" + type + "'. Result: " + (isPresent ? "Found" : "Not found"));
+      otherMethods.messagesMethod("Message: Trying to find element with locator '" + locator + "' and type '" + type + "'. Result: " + (isPresent ? "Found" : "Not found"));
     } 
 
     return isPresent; 
@@ -189,7 +189,7 @@ public class MainMethods {
       driver.get(url); // Navigate to URL.
       Assert.assertEquals(driver.getCurrentUrl(), url); // Assert that the URL that browser load is the expected URL.
       wait.waitIsDisplayed(element); // Wait the WebElement to be displayed on the screen.
-      otherMethods.messagesMetohd("Message: Opening a new broser tab and navigate to URL '" + url + "'. Then the automation is wating for WebElement '" + element + "' to be displayed.");
+      otherMethods.messagesMethod("Message: Opening a new broser tab and navigate to URL '" + url + "'. Then the automation is wating for WebElement '" + element + "' to be displayed.");
     } catch (Exception e) {
       System.out.println("ERROR! The operadion was not compleate. Please review the '" + methodName +
         "' method from '" + className + "' class. Error message: " + e); // This message will be shown if something is gone wrong with the method.
@@ -210,7 +210,7 @@ public class MainMethods {
       driver.get(url); // Navigate to URL.
       Assert.assertEquals(driver.getCurrentUrl(), url); // Assert that the URL that browser load is the expected URL.
       wait.waitIsDisplayed(element); // Wait the WebElement to be displayed on the screen.
-      otherMethods.messagesMetohd("Message: Navigate to URL '" + url + "'. Then the automation is wating for WebElement '" + element + "' to be displayed.");
+      otherMethods.messagesMethod("Message: Navigate to URL '" + url + "'. Then the automation is wating for WebElement '" + element + "' to be displayed.");
     } catch (Exception e) {
       System.out.println("ERROR! The operadion was not compleate. Please review the '" + methodName +
         "' method from '" + className + "' class. Error message: " + e); // This message will be shown if something is gone wrong with the method.    
@@ -233,7 +233,7 @@ public class MainMethods {
       webElement.sendKeys(filledData); // Fill the input text element with data.
       String actualResult = webElement.getAttribute("value"); // Get the actual result string.
       Assert.assertEquals(actualResult, filledData); // Make an assertion to make sure that the method was executed correctly.
-      otherMethods.messagesMetohd("Message: Clearing the input text element. Filling with '" + filledData + "' data into the WebElement '" + element + "'. Asserting the '" + actualResult + "' with '" + filledData + "' to make sure that the method was compleated correctly.");
+      otherMethods.messagesMethod("Message: Clearing the input text element. Filling with '" + filledData + "' data into the WebElement '" + element + "'. Asserting the '" + actualResult + "' with '" + filledData + "' to make sure that the method was compleated correctly.");
     } catch (Exception e) {
       System.out.println("ERROR! The operadion was not compleate. Please review the '" + methodName +
         "' method from '" + className + "' class. Error message: " + e); // This message will be shown if something is gone wrong with the method.
@@ -256,7 +256,7 @@ public class MainMethods {
       webElement.sendKeys(filledData); // Fill the input text element with data.
       String actualResult = webElement.getAttribute("value"); // Get the actual result string.
       Assert.assertEquals(actualResult, filledData); // Make an assertion to make sure that the method was executed correctly.
-      otherMethods.messagesMetohd("Message: Clearing the input text element. Filling with '" + filledData + "' data into the WebElement '" + element + "'. Asserting the '" + actualResult + "' with '" + filledData + "' to make sure that the method was compleated correctly.");
+      otherMethods.messagesMethod("Message: Clearing the input text element. Filling with '" + filledData + "' data into the WebElement '" + element + "'. Asserting the '" + actualResult + "' with '" + filledData + "' to make sure that the method was compleated correctly.");
     } catch (Exception e) {
       System.out.println("ERROR! The operadion was not compleate. Please review the '" + methodName +
         "' method from '" + className + "' class. Error message: " + e); // This message will be shown if something is gone wrong with the method.
@@ -278,7 +278,7 @@ public class MainMethods {
       webElement.sendKeys(filledData); // Fill the input text element with data.
       String actualResult = webElement.getAttribute("value"); // Get the actual result string.
       Assert.assertEquals(actualResult, filledData); // Make an assertion to make sure that the method was executed correctly.
-      otherMethods.messagesMetohd("Message: Filling with '" + filledData + "' data into the WebElement '" + element + "'. Asserting the '" + actualResult + "' with '" + filledData + "' to make sure that the method was compleated correctly.");
+      otherMethods.messagesMethod("Message: Filling with '" + filledData + "' data into the WebElement '" + element + "'. Asserting the '" + actualResult + "' with '" + filledData + "' to make sure that the method was compleated correctly.");
     } catch (Exception e) {
       System.out.println("ERROR! The operadion was not compleate. Please review the '" + methodName +
         "' method from '" + className + "' class. Error message: " + e); // This message will be shown if something is gone wrong with the method.
@@ -300,7 +300,7 @@ public class MainMethods {
         WebElement webElement = wait.waitIsDisplayed(element); // Wait the WebElement to be displayed on the screen and assign it to the variable.
         webElement.click(); // Click over the element.
         wait.waitIsDisplayed(confirmElement); // Wait the WebElement to be displayed on the screen.
-        otherMethods.messagesMetohd("Message: The WebElement '" + element + "' is displayed and can be clicked. Then the automation is wating for WebElement '" + confirmElement + "' to be displayed.");
+        otherMethods.messagesMethod("Message: The WebElement '" + element + "' is displayed and can be clicked. Then the automation is wating for WebElement '" + confirmElement + "' to be displayed.");
       } else {
         System.out.println("ERROR! The WebElement '" + element + "' is NOT displayed and CAN'T be clicked.");
       }
@@ -327,7 +327,7 @@ public class MainMethods {
         ArrayList < String > tabs = new ArrayList < String > (driver.getWindowHandles()); // Declare an ArrayList used for different browser tabs.
         driver.switchTo().window(tabs.get(browserWindow)); // Switch to the selected browser tab.
         wait.waitIsDisplayed(confirmElement); // Wait the WebElement to be displayed on the screen.
-        otherMethods.messagesMetohd("Message: The WebElement '" + element + "' is displayed and can be clicked. Then a new browser tab is oppened. Then the automation is wating for WebElement '" + confirmElement + "' to be displayed.");
+        otherMethods.messagesMethod("Message: The WebElement '" + element + "' is displayed and can be clicked. Then a new browser tab is oppened. Then the automation is wating for WebElement '" + confirmElement + "' to be displayed.");
       } else {
         System.out.println("ERROR! The WebElement '" + element + "' is NOT displayed and CAN'T be clicked.");
       }
@@ -352,7 +352,7 @@ public class MainMethods {
         WebElement webElement = wait.waitIsDisplayed(element); // Wait the WebElement to be displayed on the screen and assign it to the variable.
         webElement.sendKeys(Keys.ENTER); // Press the 'enter' button against the element.
         wait.waitIsDisplayed(confirmElement); // Wait the WebElement to be displayed on the screen.
-        otherMethods.messagesMetohd("Message: The WebElement '" + element + "' is displayed and can be clicked by pressing the 'ENTER' key. Then the automation is wating for WebElement '" + confirmElement + "' to be displayed.");
+        otherMethods.messagesMethod("Message: The WebElement '" + element + "' is displayed and can be clicked by pressing the 'ENTER' key. Then the automation is wating for WebElement '" + confirmElement + "' to be displayed.");
       } else {
         System.out.println("ERROR! The WebElement '" + element + "' is NOT displayed and CAN'T be clicked.");
       }
@@ -378,7 +378,7 @@ public class MainMethods {
         WebElement webElement = wait.waitIsDisplayed(element); // Wait the WebElement to be displayed on the screen and assign it to the variable.
         actions.contextClick(webElement).perform(); // Execute the right click of the mouse action over the element.
         wait.waitIsDisplayed(confirmElement); // Wait the WebElement to be displayed on the screen.
-        otherMethods.messagesMetohd("Message: The WebElement '" + element + "' is displayed and can be clicked by pressing the RIGHT MOUSE button. Then the automation is wating for WebElement '" + confirmElement + "' to be displayed.");
+        otherMethods.messagesMethod("Message: The WebElement '" + element + "' is displayed and can be clicked by pressing the RIGHT MOUSE button. Then the automation is wating for WebElement '" + confirmElement + "' to be displayed.");
       } else {
         System.out.println("ERROR! The WebElement '" + element + "' is NOT displayed and CAN'T be clicked.");
       }
@@ -404,7 +404,7 @@ public class MainMethods {
         WebElement webElement = wait.waitIsDisplayed(element); // Wait the WebElement to be displayed on the screen and assign it to the variable.
         actions.doubleClick(webElement).perform(); // Execute the double click action of the left mouse against the element.
         wait.waitIsDisplayed(confirmElement); // Wait the WebElement to be displayed on the screen.
-        otherMethods.messagesMetohd("Message: The WebElement '" + element + "' is displayed and can be clicked by pressing the LEFT MOUSE button TWICE. Then the automation is wating for WebElement '" + confirmElement + "' to be displayed.");
+        otherMethods.messagesMethod("Message: The WebElement '" + element + "' is displayed and can be clicked by pressing the LEFT MOUSE button TWICE. Then the automation is wating for WebElement '" + confirmElement + "' to be displayed.");
       } else {
         System.out.println("ERROR! The WebElement '" + element + "' is NOT displayed and CAN'T be clicked.");
       }
@@ -427,7 +427,7 @@ public class MainMethods {
       WebElement webElement = wait.waitIsDisplayed(element); // Wait the WebElement to be displayed on the screen and assign it to the variable.
       if (webElement.isEnabled()) { // We need to check if the element is enabled. If not - the element can't be clicked.
         webElement.click(); // Click over the element.
-        otherMethods.messagesMetohd("Message: The WebElement '" + element + "' is displayed and enabled and can be checked.");
+        otherMethods.messagesMethod("Message: The WebElement '" + element + "' is displayed and enabled and can be checked.");
         if (!webElement.isSelected()) {
           System.out.println("ERROR! The WebElement '" + webElement + "' was NOT CHECKED."); // Show this message in the console output if the element is not selected.
         }
@@ -453,7 +453,7 @@ public class MainMethods {
       WebElement webElement = wait.waitIsDisplayed(element); // Wait the WebElement to be displayed on the screen and assign it to the variable.
       if (webElement.isEnabled()) { // We need to check if the element is enabled. If not - the element can't be clicked.
         webElement.click(); // Click over the element.
-        otherMethods.messagesMetohd("Message: The WebElement '" + element + "' is displayed and enabled and can be checked.");
+        otherMethods.messagesMethod("Message: The WebElement '" + element + "' is displayed and enabled and can be checked.");
       } else {
         System.out.println("ERROR! The element: " + element + " is NOT enabled and CAN'T be clicked."); // Show this message in the console output if the element is disabled.
       }
@@ -480,7 +480,7 @@ public class MainMethods {
         WebElement dropDownSelectedOption = dropDownList.getFirstSelectedOption(); // Get the selected option and assign it to WebElement variable.
         String dropDownVlaue = dropDownSelectedOption.getText(); // Get the actual result string.
         Assert.assertEquals(dropDownVlaue, visibleText); // Make an assertion to make sure that the method was executed correctly.
-        otherMethods.messagesMetohd("Message: Selecting by visible text '" + visibleText + "' from the drop-down list '" + element + "'. Asserting the '" + dropDownVlaue + "' with '" + visibleText + "' to make sure that the method was compleated correctly.");
+        otherMethods.messagesMethod("Message: Selecting by visible text '" + visibleText + "' from the drop-down list '" + element + "'. Asserting the '" + dropDownVlaue + "' with '" + visibleText + "' to make sure that the method was compleated correctly.");
       } else {
         System.out.println("ERROR! The element '" + element + "' is NOT enabled and can't be clicked.");
       }
@@ -510,7 +510,7 @@ public class MainMethods {
         WebElement dropDownSelectedOption = dropDownList.getFirstSelectedOption(); // Get the selected option and assign it to WebElement variable.
         String actualResult = dropDownSelectedOption.getText(); // Get the actual result string.
         Assert.assertEquals(actualResult, expectedResult); // Make an assertion to make sure that the method was executed correctly.
-        otherMethods.messagesMetohd("Message: Selecting by index '" + index + "' from the drop-down list '" + element + "'. Asserting the '" + actualResult + "' with '" + expectedResult + "' to make sure that the method was compleated correctly.");
+        otherMethods.messagesMethod("Message: Selecting by index '" + index + "' from the drop-down list '" + element + "'. Asserting the '" + actualResult + "' with '" + expectedResult + "' to make sure that the method was compleated correctly.");
       } else {
         System.out.println("ERROR! The element '" + element + "' is not enabled and can't be clicked.");
       }
@@ -537,7 +537,7 @@ public class MainMethods {
         WebElement dropDownSelectedOption = dropDownList.getWrappedElement();
         String dropDownVlaue = dropDownSelectedOption.getAttribute("value"); // Get the attribute value of the element.
         Assert.assertEquals(dropDownVlaue, value); // Make an assertion to make sure that the method was executed correctly.
-        otherMethods.messagesMetohd("Message: Selecting value '" + value + "' from the drop-down list '" + element + "'. Asserting the '" + dropDownVlaue + "' with '" + value + "' to make sure that the method was compleated correctly.");
+        otherMethods.messagesMethod("Message: Selecting value '" + value + "' from the drop-down list '" + element + "'. Asserting the '" + dropDownVlaue + "' with '" + value + "' to make sure that the method was compleated correctly.");
       } else {
         System.out.println("ERROR! The element '" + element + "' is not enabled and can't be clicked.");
       }
@@ -568,7 +568,7 @@ public class MainMethods {
         WebElement dropDownSelectedOption = selectDropDownList.getFirstSelectedOption(); // Get the selected drop-down list value.
         String actualResult = dropDownSelectedOption.getText(); // Assign the selected drop-down list value to a variable. This will be used for actual result.
         Assert.assertEquals(actualResult, expectedResult); // Make an assertion, to make sure that the method was executed correctly.
-        otherMethods.messagesMetohd("Message: Selecting the drop-down list '" + dropDownListElement + "' with value by clicking the WebElement '" + dropDownListValueElement + "'. Asserting the '" + actualResult + "' with '" + expectedResult + "' to make sure that the method was compleated correctly.");
+        otherMethods.messagesMethod("Message: Selecting the drop-down list '" + dropDownListElement + "' with value by clicking the WebElement '" + dropDownListValueElement + "'. Asserting the '" + actualResult + "' with '" + expectedResult + "' to make sure that the method was compleated correctly.");
       } else {
         System.out.println("ERROR! The element '" + dropDownListElement + "' is not enabled and can't be clicked.");
       }
@@ -593,7 +593,7 @@ public class MainMethods {
     try {
       WebElement webElement = wait.waitIsDisplayed(element); // Wait the WebElement to be displayed on the screen and assign it to the variable.
       String text = webElement.getText(); // Assign the text value to the variable.
-      otherMethods.messagesMetohd("Message: Waiting and getting the text from the WebElement '" + element + "'. The copied text is: '" + text + "'.");
+      otherMethods.messagesMethod("Message: Waiting and getting the text from the WebElement '" + element + "'. The copied text is: '" + text + "'.");
       return text; // Return the text values.
     } catch (Exception e) {
       System.out.println("ERROR! The operation was not complete. Please review the '" + methodName +
@@ -621,7 +621,7 @@ public class MainMethods {
       String getThePopUpText = driver.switchTo().alert().getText(); // Get the text of the pop-up window.
       Assert.assertEquals(getThePopUpText, expectedReult); // Make an assertion to make sure that the pop-up is opened.
       driver.switchTo().alert().accept(); // Press on the "OK" button of the pop-up window.
-      otherMethods.messagesMetohd("Message: The WebElement '" + element + "' is clicked and ALERT pop-up window is opened. The automation is switching to the ALERT pop-up window. The automation is getting the ALERT pop-up window text '" + getThePopUpText + "'. Asserting the '" + getThePopUpText + "' with '" + expectedReult + "' to make sure that the method was compleated correctly. Click on the 'OK' button to accept the ALERT pop-up window.");
+      otherMethods.messagesMethod("Message: The WebElement '" + element + "' is clicked and ALERT pop-up window is opened. The automation is switching to the ALERT pop-up window. The automation is getting the ALERT pop-up window text '" + getThePopUpText + "'. Asserting the '" + getThePopUpText + "' with '" + expectedReult + "' to make sure that the method was compleated correctly. Click on the 'OK' button to accept the ALERT pop-up window.");
     } catch (Exception e) {
       System.out.println("ERROR! The operadion was not compleate. Please review the '" + methodName +
         "' method from '" + className + "' class. Error message: " + e); // This message will be shown if something is gone wrong with the method.
@@ -645,7 +645,7 @@ public class MainMethods {
       String getThePopUpText = driver.switchTo().alert().getText(); // Get the text of the pop-up window.
       Assert.assertEquals(getThePopUpText, expectedReult); // Make an assertion to make sure that the pop-up is opened.
       driver.switchTo().alert().dismiss(); // Press on the "Cancel" button of the pop-up window.
-      otherMethods.messagesMetohd("Message: The WebElement '" + element + "' is clicked and ALERT pop-up window is opened. The automation is switching to the ALERT pop-up window. The automation is getting the ALERT pop-up window text '" + getThePopUpText + "'.Asserting the '" + getThePopUpText + "' with '" + expectedReult + "' to make sure that the method was compleated correctly. Click on the 'Cancel' button to dismiss the ALERT pop-up window.");
+      otherMethods.messagesMethod("Message: The WebElement '" + element + "' is clicked and ALERT pop-up window is opened. The automation is switching to the ALERT pop-up window. The automation is getting the ALERT pop-up window text '" + getThePopUpText + "'.Asserting the '" + getThePopUpText + "' with '" + expectedReult + "' to make sure that the method was compleated correctly. Click on the 'Cancel' button to dismiss the ALERT pop-up window.");
     } catch (Exception e) {
       System.out.println("ERROR! The operadion was not compleate. Please review the '" + methodName +
         "' method from '" + className + "' class. Error message: " + e); // This message will be shown if something is gone wrong with the method.
@@ -671,7 +671,7 @@ public class MainMethods {
       Assert.assertEquals(getThePopUpText, expectedReult); // Make an assertion to make sure that the pop-up is opened.
       driver.switchTo().alert().sendKeys(text); // Fill with the text into the alert window.
       driver.switchTo().alert().accept(); // Press on the "OK" button of the pop-up window.
-      otherMethods.messagesMetohd("Message: The WebElement '" + element + "' is clicked and ALERT pop-up window is opened. The automation is switching to the ALERT pop-up window. The automation is getting the ALERT pop-up window text '" + getThePopUpText + "'.Asserting the '" + getThePopUpText + "' with '" + expectedReult + "' to make sure that the method was compleated correctly. Sending testing data '" + text + "' to fill the ALERT pop-up window. Click on the 'OK' button to accept the ALERT pop-up window.");
+      otherMethods.messagesMethod("Message: The WebElement '" + element + "' is clicked and ALERT pop-up window is opened. The automation is switching to the ALERT pop-up window. The automation is getting the ALERT pop-up window text '" + getThePopUpText + "'.Asserting the '" + getThePopUpText + "' with '" + expectedReult + "' to make sure that the method was compleated correctly. Sending testing data '" + text + "' to fill the ALERT pop-up window. Click on the 'OK' button to accept the ALERT pop-up window.");
     } catch (Exception e) {
       System.out.println("ERROR! The operadion was not compleate. Please review the '" + methodName +
         "' method from '" + className + "' class. Error message: " + e); // This message will be shown if something is gone wrong with the method.
@@ -689,12 +689,12 @@ public class MainMethods {
     String className = this.getClass().getSimpleName(); // Get the name of the class.
     try {
       int allIframesInThePage = driver.findElements(By.tagName("iframe")).size();
-      otherMethods.messagesMetohd("Message: Checking how many iFrames contains the page.");
+      otherMethods.messagesMethod("Message: Checking how many iFrames contains the page.");
       if (allIframesInThePage != 0) {
-        otherMethods.messagesMetohd("Message: There is/are '" + allIframesInThePage + "' iFrame/s in this page.");
+        otherMethods.messagesMethod("Message: There is/are '" + allIframesInThePage + "' iFrame/s in this page.");
         return allIframesInThePage;
       } else {
-        otherMethods.messagesMetohd("Message: The page doesn't contains any iFrames.");
+        otherMethods.messagesMethod("Message: The page doesn't contains any iFrames.");
         return 0;
       }
     } catch (Exception e) {
@@ -717,7 +717,7 @@ public class MainMethods {
     try {
       driver.switchTo().frame(locatorId); // Switch to iFrame by ID.
       wait.waitIsDisplayed(confirmElement); // Wait the WebElement to be displayed on the screen.
-      otherMethods.messagesMetohd("Message: Switching the focus to the iFrame by ID '" + locatorId + "'. Then the automation is wating for WebElement '" + confirmElement + "' to be displayed.");
+      otherMethods.messagesMethod("Message: Switching the focus to the iFrame by ID '" + locatorId + "'. Then the automation is wating for WebElement '" + confirmElement + "' to be displayed.");
     } catch (Exception e) {
       System.out.println("ERROR! The operadion was not compleate. Please review the '" + methodName +
         "' method from '" + className + "' class. Error message: " + e); // This message will be shown if something is gone wrong with the method.
@@ -737,7 +737,7 @@ public class MainMethods {
     try {
       driver.switchTo().frame(locatorIndex); // Switch to iFrame by index.
       wait.waitIsDisplayed(confirmElement); // Wait the WebElement to be displayed on the screen.
-      otherMethods.messagesMetohd("Message: Switching the focus to the iFrame by index '" + locatorIndex + "'. Then the automation is wating for WebElement '" + confirmElement + "' to be displayed.");
+      otherMethods.messagesMethod("Message: Switching the focus to the iFrame by index '" + locatorIndex + "'. Then the automation is wating for WebElement '" + confirmElement + "' to be displayed.");
     } catch (Exception e) {
       System.out.println("ERROR! The operadion was not compleate. Please review the '" + methodName +
         "' method from '" + className + "' class. Error message: " + e); // This message will be shown if something is gone wrong with the method.
@@ -756,7 +756,7 @@ public class MainMethods {
     try {
       driver.switchTo().defaultContent(); // Switch to the default HTML page.
       wait.waitIsDisplayed(confirmElement); // Wait the WebElement to be displayed on the screen.
-      otherMethods.messagesMetohd("Message: Switching (back) the focus to default HTML after working with iFrame. Then the automation is wating for WebElement '" + confirmElement + "' to be displayed.");
+      otherMethods.messagesMethod("Message: Switching (back) the focus to default HTML after working with iFrame. Then the automation is wating for WebElement '" + confirmElement + "' to be displayed.");
     } catch (Exception e) {
       System.out.println("ERROR! The operadion was not compleate. Please review the '" + methodName +
         "' method from '" + className + "' class. Error message: " + e); // This message will be shown if something is gone wrong with the method.
@@ -777,7 +777,7 @@ public class MainMethods {
       String directory = System.getProperty("user.dir") + "//screenshots//"; // Declare destination path for creating a new screenshot.
       File sourceFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE); // Get the screenshot.
       FileUtils.copyFile(sourceFile, new File(directory + filename)); // Copy the screenshot to declared destination path with declared file name.
-      otherMethods.messagesMetohd("Message: Creating a screenshot when method fails.");
+      otherMethods.messagesMethod("Message: Creating a screenshot when method fails.");
     } catch (Exception e) {
       System.out.println("ERROR! The operadion was not compleate. Please review the '" + methodName +
         "' method from '" + className + "' class. Error message: " + e); // This message will be shown if something is gone wrong with the method.
@@ -796,7 +796,7 @@ public class MainMethods {
       String directory = System.getProperty("user.dir") + "//screenshots//"; // Declare destination path for creating a new screenshot.
       File sourceFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE); // Get the screenshot.
       FileUtils.copyFile(sourceFile, new File(directory + filename)); // Copy the screenshot to declared destination path with declared file name.
-      otherMethods.messagesMetohd("Message: Creating a screenshot when the @Test fails.");
+      otherMethods.messagesMethod("Message: Creating a screenshot when the @Test fails.");
     } catch (Exception e) {
       System.out.println("ERROR! The operadion was not compleate. Please review the '" + methodName +
         "' method from '" + className + "' class. Error message: " + e); // This message will be shown if something is gone wrong with the method.
@@ -817,7 +817,7 @@ public class MainMethods {
       WebElement webElement = wait.waitIsDisplayed(element); // Wait the WebElement to be displayed on the screen and assign it to the variable.
       String actualResult = webElement.getAttribute(attribute); // Get the actual result string.
       Assert.assertEquals(actualResult, attributeValueExapectation); // Make an assertion to make sure that the method was executed correctly.
-      otherMethods.messagesMetohd("Message: Getting the attribute data from element '" + element + "' from attribute '" + attribute + "'. Asserting the '" + actualResult + "' with '" + attributeValueExapectation + "' to make sure that the method was compleated correctly.");
+      otherMethods.messagesMethod("Message: Getting the attribute data from element '" + element + "' from attribute '" + attribute + "'. Asserting the '" + actualResult + "' with '" + attributeValueExapectation + "' to make sure that the method was compleated correctly.");
     } catch (Exception e) {
       System.out.println("ERROR! The operadion was not compleate. Please review the '" + methodName +
         "' method from '" + className + "' class. Error message: " + e); // This message will be shown if something is gone wrong with the method.
@@ -841,10 +841,10 @@ public class MainMethods {
       String naturalWidth = element.getAttribute("naturalWidth");
       
       if ("0".equals(naturalWidth)) {
-        otherMethods.messagesMetohd("Message: The located image is broken.");
+        otherMethods.messagesMethod("Message: The located image is broken.");
         return false;
       } else {
-        otherMethods.messagesMetohd("Message: The located image is available.");
+        otherMethods.messagesMethod("Message: The located image is available.");
         return true;
       }
     } catch (Exception e) {

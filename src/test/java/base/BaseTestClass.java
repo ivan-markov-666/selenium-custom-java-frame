@@ -49,7 +49,7 @@ public class BaseTestClass {
     
     /** This if-else statement is used for configuration about usage of system property or environment variable for browser drivers. */
     if ("yes".equals(Configuration.useSystemPropertyForBrowserDriver)) { // ✅ Fixed String comparison
-      otherMethods.messagesMetohd("Message: We are using System Property for setting up the browser driver path.");
+      otherMethods.messagesMethod("Message: We are using System Property for setting up the browser driver path.");
       
       /** This if-else statement is used for setting up the system property for browser driver. */
       if ("firefox".equals(Configuration.browser)) { // ✅ Fixed String comparison
@@ -60,8 +60,8 @@ public class BaseTestClass {
         System.out.println("ERROR! Unsupported browser: '" + Configuration.browser + "'. Please set 'browser' variable to 'firefox' or 'chrome' in the Configuration class.");
       }
     } else if ("no".equals(Configuration.useSystemPropertyForBrowserDriver)) { // ✅ Fixed String comparison
-      otherMethods.messagesMetohd("Message: We are using WebDriverManager for automatic browser driver management.");
-      otherMethods.messagesMetohd("Message: WebDriverManager will automatically download and setup the correct driver version.");
+      otherMethods.messagesMethod("Message: We are using WebDriverManager for automatic browser driver management.");
+      otherMethods.messagesMethod("Message: WebDriverManager will automatically download and setup the correct driver version.");
     } else {
       System.out.println("ERROR! Invalid value for 'useSystemPropertyForBrowserDriver': '" + Configuration.useSystemPropertyForBrowserDriver + "'. Please set it to 'yes' or 'no' in the Configuration class.");
     }
@@ -83,7 +83,7 @@ public class BaseTestClass {
     driver.manage().window().maximize(); // Set opened browser to 100% width and 100% height.
     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(config.timeOut)); // Set Implicit Wait.
     url = Configuration.baseURL + endpoint; // Set url.
-    otherMethods.messagesMetohd("Message: The 'setUp' method was executed. This method contains all needed code that will be executed in the @BeforeMethod annotation.");
+    otherMethods.messagesMethod("Message: The 'setUp' method was executed. This method contains all needed code that will be executed in the @BeforeMethod annotation.");
   }
 
   /**
@@ -95,7 +95,7 @@ public class BaseTestClass {
   public void dataDriven(String excelFileName, String excelSheetName) {
     excel = new ImportDataFromExcel(); // Create a new constructor for ImportDataFromExcel.
     excel.setExcelFile(config.excelFilePath + excelFileName, excelSheetName); // Execute the setExcelFile method. This is used to set the path of the Excel file and Excel sheet name.
-    otherMethods.messagesMetohd("Message: The 'dataDriven' method was executed. The automation read data from file '" + config.excelFilePath + excelFileName + "' and read data from sheet '" + excelSheetName + "'.");
+    otherMethods.messagesMethod("Message: The 'dataDriven' method was executed. The automation read data from file '" + config.excelFilePath + excelFileName + "' and read data from sheet '" + excelSheetName + "'.");
   }
 
   /**
@@ -103,6 +103,6 @@ public class BaseTestClass {
    */
   public void terminate() {
     driver.quit(); // Close the browser when the test is done.
-    otherMethods.messagesMetohd("Message: The 'terminate' method was executed. This method contains all needed code that will be executed in the @AfterMethod annotation."); // ✅ Fixed typo (@@AfterMethod -> @AfterMethod)
+    otherMethods.messagesMethod("Message: The 'terminate' method was executed. This method contains all needed code that will be executed in the @AfterMethod annotation."); // ✅ Fixed typo (@@AfterMethod -> @AfterMethod)
   }
 }
