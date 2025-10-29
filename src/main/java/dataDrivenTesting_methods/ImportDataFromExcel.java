@@ -23,31 +23,54 @@ public class ImportDataFromExcel {
   private static XSSFWorkbook ExcelWBook;
   private static XSSFSheet ExcelWSheet;
 
-  /**	Set the path to the Excel file
-   * 	@param filePath			- you need to provide the path to the Excel file.
-   * 	@param sheetName		- you need to provide the name of the sheet that you want to select from the Excel file. 
+  /**
+   * Set the path to the Excel file.
+   * 
+   * @param filePath - you need to provide the path to the Excel file.
+   * @param sheetName - you need to provide the name of the sheet that you want to select from the Excel file.
    */
   public void setExcelFile(String filePath, String sheetName) {
     String methodName = new Object() {}.getClass().getEnclosingMethod().getName(); // Get the name of the current method.
     String className = this.getClass().getSimpleName(); // Get the name of the class.
-    try {
-      // Open the Excel file.
-      FileInputStream ExcelFile = new FileInputStream(filePath);
-
+    
+    // try-with-resources automatically closes FileInputStream
+    try (FileInputStream ExcelFile = new FileInputStream(filePath)) {
+      
       // Access the Excel sheet data.
       ExcelWBook = new XSSFWorkbook(ExcelFile);
       ExcelWSheet = ExcelWBook.getSheet(sheetName);
-      otherMethods.messagesMetohd("Message: The Excel file located into the '" + ExcelFile + sheetName + "' is located.");
+      otherMethods.messagesMetohd("Message: The Excel file located at '" + filePath + "' with sheet '" + sheetName + "' is loaded.");
+      
     } catch (Exception e) {
-      System.out.println("ERROR! The operadion was not compleate. Please review the '" + methodName +
-        "' method from '" + className + "' class. Error message: " + e); // This message will be shown if something is gone wrong with the method.
+      System.out.println("ERROR! The operation was not complete. Please review the '" + methodName +
+        "' method from '" + className + "' class. Error message: " + e);
+    }
+    // FileInputStream is automatically closed here by try-with-resources
+  }
+
+  /**
+   * Call this method when you're done working with the Excel file.
+   * Recommended to call in @AfterMethod or @AfterClass.
+   */
+  public void closeExcelFile() {
+    String methodName = new Object() {}.getClass().getEnclosingMethod().getName(); // Get the name of the current method.
+    String className = this.getClass().getSimpleName(); // Get the name of the class.
+    try {
+      if (ExcelWBook != null) {
+        ExcelWBook.close();
+        otherMethods.messagesMetohd("Message: The Excel workbook has been closed.");
+      }
+    } catch (Exception e) {
+      System.out.println("ERROR! The operation was not complete. Please review the '" + methodName +
+        "' method from '" + className + "' class. Error message: " + e);
     }
   }
 
   /** 
-   * This method is used for getting all possible cells with values. 
-   * @param firstCellValue		- provide the name of the table.
-   * @return
+   * This method is used for getting all possible cells with values.
+   * 
+   * @param firstCellValue - provide the name of the table.
+   * @return - array of boundary cells.
    */
   @SuppressWarnings("unused")
   public XSSFCell[] findCells(String firstCellValue) {
@@ -79,18 +102,19 @@ public class ImportDataFromExcel {
           }
         }
       }
-      otherMethods.messagesMetohd("Message: All possible Excle cells was located.");
+      otherMethods.messagesMetohd("Message: All possible Excel cells were located.");
     } catch (Exception e) {
-      System.out.println("ERROR! The operadion was not compleate. Please review the '" + methodName +
-        "' method from '" + className + "' class. Error message: " + e); // This message will be shown if something is gone wrong with the method.
+      System.out.println("ERROR! The operation was not complete. Please review the '" + methodName +
+        "' method from '" + className + "' class. Error message: " + e);
     }
     return cells;
   }
 
   /** 
    * This method is used for getting the data from the Excel file.
-   * @param firstCellValue		- provide the name of cell from where the reading of the data begin.
-   * @return
+   * 
+   * @param firstCellValue - provide the name of cell from where the reading of the data begins.
+   * @return - 2D array containing the test data from Excel.
    */
   public String[][] getDataFromExcelFile(String firstCellValue) {
     String[][] testData = null;
@@ -122,10 +146,10 @@ public class ImportDataFromExcel {
           }
         }
       }
-      otherMethods.messagesMetohd("Message: The data from Excel file was getted.");
+      otherMethods.messagesMetohd("Message: The data from Excel file was retrieved.");
     } catch (Exception e) {
-      System.out.println("ERROR! The operadion was not compleate. Please review the '" + methodName +
-        "' method from '" + className + "' class. Error message: " + e); // This message will be shown if something is gone wrong with the method.
+      System.out.println("ERROR! The operation was not complete. Please review the '" + methodName +
+        "' method from '" + className + "' class. Error message: " + e);
     }
     return testData;
   }
