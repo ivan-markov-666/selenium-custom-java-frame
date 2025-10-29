@@ -48,6 +48,39 @@ public class MainMethods {
    * Add here more Selenium methods in this class if its needed.
    * If you want to turn on the messages in the methods you need to set the value to 'on' of the 'messages' variable from the 'configuration.Configuration' class.
    */
+  
+  /**
+   * Helper method to convert locator type string to Selenium By object.
+   * This eliminates code duplication between getElement() and getElementList().
+   * 
+   * @param locator - the locator value.
+   * @param type - the locator type (id, xpath, cssSelector, name, linkText, partialLinkText, className, tagName).
+   * @return - the By object corresponding to the locator type.
+   * @throws IllegalArgumentException if the locator type is not supported.
+   */
+  private By getByLocator(String locator, String type) {
+    type = type.toLowerCase();
+    
+    if ("id".equals(type)) {
+      return By.id(locator);
+    } else if ("xpath".equals(type)) {
+      return By.xpath(locator);
+    } else if ("cssselector".equals(type)) {
+      return By.cssSelector(locator);
+    } else if ("name".equals(type)) {
+      return By.name(locator);
+    } else if ("linktext".equals(type)) {
+      return By.linkText(locator);
+    } else if ("partiallinktext".equals(type)) {
+      return By.partialLinkText(locator);
+    } else if ("classname".equals(type)) {
+      return By.className(locator);
+    } else if ("tagname".equals(type)) {
+      return By.tagName(locator);
+    } else {
+      throw new IllegalArgumentException("Locator type '" + type + "' is not supported. Supported types: id, xpath, cssSelector, name, linkText, partialLinkText, className, tagName.");
+    }
+  }
 
   /**
    * This method is used to get element by locator.
@@ -63,31 +96,13 @@ public class MainMethods {
     String className = this.getClass().getSimpleName(); // Get the name of the class.
     
     try {
-      type = type.toLowerCase();
       otherMethods.messagesMetohd("Message: Trying to find element with locator '" + locator + "' and type '" + type + "'.");
       
-      if ("id".equals(type)) {
-        return this.driver.findElement(By.id(locator));
-      } else if ("xpath".equals(type)) {
-        return this.driver.findElement(By.xpath(locator));
-      } else if ("cssselector".equals(type)) {
-        return this.driver.findElement(By.cssSelector(locator));
-      } else if ("name".equals(type)) {
-        return this.driver.findElement(By.name(locator));
-      } else if ("linktext".equals(type)) {
-        return this.driver.findElement(By.linkText(locator));
-      } else if ("partiallinktext".equals(type)) {
-        return this.driver.findElement(By.partialLinkText(locator));
-      } else if ("classname".equals(type)) {
-        return this.driver.findElement(By.className(locator));
-      } else if ("tagname".equals(type)) {
-        return this.driver.findElement(By.tagName(locator));
-      } else {
-        throw new IllegalArgumentException("Locator type '" + type + "' is not supported. Supported types: id, xpath, cssSelector, name, linkText, partialLinkText, className, tagName.");
-      }
+      By by = getByLocator(locator, type); // ✅ Използваме helper метода!
+      return driver.findElement(by); // ✅ Само 1 ред вместо 30!
+      
     } catch (org.openqa.selenium.NoSuchElementException e) {
       takeScreenShotInMethod(); // Take a screenshot when the method fails.
-      
       throw new ElementNotFoundException(
         "Element not found in DOM tree",
         locator,
@@ -101,7 +116,6 @@ public class MainMethods {
       System.out.println("ERROR! The operation was not complete. Please review the '" + methodName +
         "' method from '" + className + "' class. Error message: " + e);
       takeScreenShotInMethod(); // Take a screenshot when the method fails.
-      
       throw new RuntimeException("Unexpected error while finding element with locator '" + locator + "' and type '" + type + "'.", e);
     }
   }
@@ -121,28 +135,11 @@ public class MainMethods {
     String className = this.getClass().getSimpleName(); // Get the name of the class.
     
     try {
-      type = type.toLowerCase();
       otherMethods.messagesMetohd("Message: Trying to find elements with locator '" + locator + "' and type '" + type + "'.");
       
-      if ("id".equals(type)) {
-        return this.driver.findElements(By.id(locator));
-      } else if ("xpath".equals(type)) {
-        return this.driver.findElements(By.xpath(locator));
-      } else if ("cssselector".equals(type)) {
-        return this.driver.findElements(By.cssSelector(locator));
-      } else if ("name".equals(type)) {
-        return this.driver.findElements(By.name(locator));
-      } else if ("linktext".equals(type)) {
-        return this.driver.findElements(By.linkText(locator));
-      } else if ("partiallinktext".equals(type)) {
-        return this.driver.findElements(By.partialLinkText(locator));
-      } else if ("classname".equals(type)) {
-        return this.driver.findElements(By.className(locator));
-      } else if ("tagname".equals(type)) {
-        return this.driver.findElements(By.tagName(locator));
-      } else {
-        throw new IllegalArgumentException("Locator type '" + type + "' is not supported. Supported types: id, xpath, cssSelector, name, linkText, partialLinkText, className, tagName.");
-      }
+      By by = getByLocator(locator, type); // ✅ Използваме helper метода!
+      return driver.findElements(by); // ✅ Само 1 ред вместо 30!
+      
     } catch (IllegalArgumentException e) {
       System.out.println("ERROR! " + e.getMessage());
       throw e;
@@ -150,7 +147,6 @@ public class MainMethods {
       System.out.println("ERROR! The operation was not complete. Please review the '" + methodName +
         "' method from '" + className + "' class. Error message: " + e);
       takeScreenShotInMethod(); // Take a screenshot when the method fails.
-      
       throw new RuntimeException("Unexpected error while finding elements with locator '" + locator + "' and type '" + type + "'.", e);
     }
   }
