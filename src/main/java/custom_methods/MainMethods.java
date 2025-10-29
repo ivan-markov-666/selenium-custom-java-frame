@@ -52,100 +52,112 @@ public class MainMethods {
   /**
    * This method is used to get element by locator.
    *   
-   * @param locator		- provide the locator of the element.
-   * @param type			- provide the locator type (id, xpath, cssSelector, name, linkText, partialLinkText, className, tagName).
-   * @return				- the element with used locator will be returned.
+   * @param locator - provide the locator of the element.
+   * @param type - provide the locator type (id, xpath, cssSelector, name, linkText, partialLinkText, className, tagName).
+   * @return - the element with used locator will be returned.
+   * @throws ElementNotFoundException if the element cannot be found.
+   * @throws IllegalArgumentException if the locator type is not supported.
    */
   public WebElement getElement(String locator, String type) {
     String methodName = new Object() {}.getClass().getEnclosingMethod().getName(); // Get the name of the current method.
     String className = this.getClass().getSimpleName(); // Get the name of the class.
+    
     try {
       type = type.toLowerCase();
-      if (type.equals("id")) {
-        otherMethods.messagesMetohd("Message: Try to find element with locator id: " + locator);
+      otherMethods.messagesMetohd("Message: Trying to find element with locator '" + locator + "' and type '" + type + "'.");
+      
+      if ("id".equals(type)) {
         return this.driver.findElement(By.id(locator));
-      } else if (type.equals("xpath")) {
-        otherMethods.messagesMetohd("Message: Try to find element with locator xpath: " + locator);
+      } else if ("xpath".equals(type)) {
         return this.driver.findElement(By.xpath(locator));
-      } else if (type.equals("cssSelector")) {
-        otherMethods.messagesMetohd("Message: Try to find element with locator css: " + locator);
+      } else if ("cssselector".equals(type)) {
         return this.driver.findElement(By.cssSelector(locator));
-      } else if (type.equals("name")) {
-        otherMethods.messagesMetohd("Message: Try to find element with locator name: " + locator);
+      } else if ("name".equals(type)) {
         return this.driver.findElement(By.name(locator));
-      } else if (type.equals("linkText")) {
-        otherMethods.messagesMetohd("Message: Try to find element with locator linktext: " + locator);
+      } else if ("linktext".equals(type)) {
         return this.driver.findElement(By.linkText(locator));
-      } else if (type.equals("partialLinkText")) {
-        otherMethods.messagesMetohd("Message: Try to find element with locator partiallinktext: " + locator);
+      } else if ("partiallinktext".equals(type)) {
         return this.driver.findElement(By.partialLinkText(locator));
-      } else if (type.equals("className")) {
-        otherMethods.messagesMetohd("Message: Try to find element with locator className: " + locator);
+      } else if ("classname".equals(type)) {
         return this.driver.findElement(By.className(locator));
-      } else if (type.equals("tagName")) {
-        otherMethods.messagesMetohd("Message: Try to find element with locator tagName: " + locator);
+      } else if ("tagname".equals(type)) {
         return this.driver.findElement(By.tagName(locator));
       } else {
-        System.out.println("Locator type not supported");
+        throw new IllegalArgumentException("Locator type '" + type + "' is not supported. Supported types: id, xpath, cssSelector, name, linkText, partialLinkText, className, tagName.");
       }
-    } catch (Exception e) {
-      System.out.println("ERROR! The operadion was not compleate. Please review the '" + methodName +
-        "' method from '" + className + "' class. Error message: " + e); // This message will be shown if something is gone wrong with the method.
+    } catch (org.openqa.selenium.NoSuchElementException e) {
       takeScreenShotInMethod(); // Take a screenshot when the method fails.
+      
+      throw new ElementNotFoundException(
+        "Element not found in DOM tree",
+        locator,
+        type,
+        e
+      );
+    } catch (IllegalArgumentException e) {
+      System.out.println("ERROR! " + e.getMessage());
+      throw e;
+    } catch (Exception e) {
+      System.out.println("ERROR! The operation was not complete. Please review the '" + methodName +
+        "' method from '" + className + "' class. Error message: " + e);
+      takeScreenShotInMethod(); // Take a screenshot when the method fails.
+      
+      throw new RuntimeException("Unexpected error while finding element with locator '" + locator + "' and type '" + type + "'.", e);
     }
-    return null;
   }
 
   /**
    * This method is used to get elements by locator.
+   * Note: Unlike getElement(), this method returns an empty list (not exception) if no elements are found,
+   * which is the standard Selenium behavior for findElements().
    * 
-   * @param locator			- provide the locator of the element.
-   * @param type			- provide the locator type (id, xpath, cssSelector, name, linkText, partialLinkText, className, tagName).
-   * @return				- the elements with used locator will be returned.
+   * @param locator - provide the locator of the element.
+   * @param type - provide the locator type (id, xpath, cssSelector, name, linkText, partialLinkText, className, tagName).
+   * @return - the list of elements with used locator will be returned. Returns empty list if no elements found.
+   * @throws IllegalArgumentException if the locator type is not supported.
    */
-  public List < WebElement > getElementList(String locator, String type) {
+  public List<WebElement> getElementList(String locator, String type) {
     String methodName = new Object() {}.getClass().getEnclosingMethod().getName(); // Get the name of the current method.
     String className = this.getClass().getSimpleName(); // Get the name of the class.
+    
     try {
       type = type.toLowerCase();
-      if (type.equals("id")) {
-        otherMethods.messagesMetohd("Message: Try to find element with locator id: " + locator);
+      otherMethods.messagesMetohd("Message: Trying to find elements with locator '" + locator + "' and type '" + type + "'.");
+      
+      if ("id".equals(type)) {
         return this.driver.findElements(By.id(locator));
-      } else if (type.equals("xpath")) {
-        otherMethods.messagesMetohd("Message: Try to find element with locator xpath: " + locator);
+      } else if ("xpath".equals(type)) {
         return this.driver.findElements(By.xpath(locator));
-      } else if (type.equals("cssSelector")) {
-        otherMethods.messagesMetohd("Message: Try to find element with locator cssSelector: " + locator);
+      } else if ("cssselector".equals(type)) {
         return this.driver.findElements(By.cssSelector(locator));
-      } else if (type.equals("name")) {
-        otherMethods.messagesMetohd("Message: Try to find element with locator name: " + locator);
+      } else if ("name".equals(type)) {
         return this.driver.findElements(By.name(locator));
-      } else if (type.equals("linkText")) {
-        otherMethods.messagesMetohd("Message: Try to find element with locator linkText: " + locator);
+      } else if ("linktext".equals(type)) {
         return this.driver.findElements(By.linkText(locator));
-      } else if (type.equals("partialLinkText")) {
-        otherMethods.messagesMetohd("Message: Try to find element with locator partialLinkText: " + locator);
+      } else if ("partiallinktext".equals(type)) {
         return this.driver.findElements(By.partialLinkText(locator));
-      } else if (type.equals("className")) {
-        otherMethods.messagesMetohd("Message: Try to find element with locator className: " + locator);
+      } else if ("classname".equals(type)) {
         return this.driver.findElements(By.className(locator));
-      } else if (type.equals("tagName")) {
-        otherMethods.messagesMetohd("Message: Try to find element with locator tagName: " + locator);
+      } else if ("tagname".equals(type)) {
         return this.driver.findElements(By.tagName(locator));
       } else {
-        System.out.println("Locator type not supported");
+        throw new IllegalArgumentException("Locator type '" + type + "' is not supported. Supported types: id, xpath, cssSelector, name, linkText, partialLinkText, className, tagName.");
       }
+    } catch (IllegalArgumentException e) {
+      System.out.println("ERROR! " + e.getMessage());
+      throw e;
     } catch (Exception e) {
-      System.out.println("ERROR! The operadion was not compleate. Please review the '" + methodName +
-        "' method from '" + className + "' class. Error message: " + e); // This message will be shown if something is gone wrong with the method.
+      System.out.println("ERROR! The operation was not complete. Please review the '" + methodName +
+        "' method from '" + className + "' class. Error message: " + e);
       takeScreenShotInMethod(); // Take a screenshot when the method fails.
+      
+      throw new RuntimeException("Unexpected error while finding elements with locator '" + locator + "' and type '" + type + "'.", e);
     }
-    return null;
   }
 
   /**
    * The method is used to check if the element is present in the DOM tree.
-   * 
+   *
    * @param locator - provide the locator of the element.
    * @param type - provide the locator type (id, xpath, cssSelector, name, linkText, partialLinkText, className, tagName).
    * @return - a boolean result. Returns 'true' if the element is available in the DOM tree, 'false' otherwise.
@@ -153,15 +165,15 @@ public class MainMethods {
   public boolean isElemenstPresent(String locator, String type) {
     List<WebElement> elementList = getElementList(locator, type);
     int size = elementList.size();
-    boolean isPresent = size > 0; // ✅ Store result in a variable
-    
-    if ("yes".equals(config.messages)) { // ✅ Fixed String comparison
-      otherMethods.messagesMetohd("Message: Trying to find element with locator '" + locator + "' and type '" + type + "'. Result: " + (isPresent ? "Found" : "Not found")); // ✅ Added result to message
-    }
-    
-    return isPresent; // ✅ Return the actual result
+    boolean isPresent = size > 0;
+
+    if ("yes".equals(config.messages)) {
+      otherMethods.messagesMetohd("Message: Trying to find element with locator '" + locator + "' and type '" + type + "'. Result: " + (isPresent ? "Found" : "Not found"));
+    } 
+
+    return isPresent; 
   }
-  
+   
   /**
    * This method will open a new tab window.
    * 
@@ -574,24 +586,27 @@ public class MainMethods {
   /**
    * Copy the text from element.
    * 
-   * @param element 		- provide an element. The element should be used for getText().
-   * @return				- the copied text from the element will be returned.
+   * @param element - provide an element. The element should be used for getText().
+   * @return - the copied text from the element will be returned.
+   * @throws RuntimeException if the text cannot be retrieved from the element.
    */
   public String getText(WebElement element) {
     String methodName = new Object() {}.getClass().getEnclosingMethod().getName(); // Get the name of the current method.
     String className = this.getClass().getSimpleName(); // Get the name of the class.
-    String text = "The text was not copied"; // We need this flag, to make sure that the text was copied.
+    
     try {
       WebElement webElement = wait.waitIsDisplayed(element); // Wait the WebElement to be displayed on the screen and assign it to the variable.
-      text = webElement.getText(); // Assign the text value to the variable.
-      otherMethods.messagesMetohd("Message: Waiting and getting the text from the WebElement '" + element + "'. The copied text is returned.");
+      String text = webElement.getText(); // Assign the text value to the variable.
+      otherMethods.messagesMetohd("Message: Waiting and getting the text from the WebElement '" + element + "'. The copied text is: '" + text + "'.");
       return text; // Return the text values.
     } catch (Exception e) {
-      System.out.println("ERROR! The operadion was not compleate. Please review the '" + methodName +
-        "' method from '" + className + "' class. Error message: " + e); // This message will be shown if something is gone wrong with the method.
+      System.out.println("ERROR! The operation was not complete. Please review the '" + methodName +
+        "' method from '" + className + "' class. Error message: " + e);
       takeScreenShotInMethod(); // Take a screenshot when the method fails.
+      
+      // Throw exception instead of returning error message as text
+      throw new RuntimeException("Failed to get text from element. Element: " + element, e);
     }
-    return text;
   }
 
   /** 
@@ -816,30 +831,33 @@ public class MainMethods {
 
   /**
    * This method is used to check if the located image is available or it is broken.
+   * ✅ UPDATED: Now properly returns boolean and throws exception on error instead of returning null.
    * 
-   * @param element			- please provide a image WebElement.
-   * @return					- the boolean value 'true' of 'false' to the class. the result is 'true' when the image is fully loaded to the UI. the result is 'false' when the image is broken.
+   * @param element - please provide an image WebElement.
+   * @return - returns 'true' if the image is fully loaded on the UI, 'false' if the image is broken.
+   * @throws RuntimeException if unable to check the image status.
    */
-  public Object checkIfTheImageIsNotBroken(WebElement element) {
+  public boolean checkIfTheImageIsNotBroken(WebElement element) {
     String methodName = new Object() {}.getClass().getEnclosingMethod().getName(); // Get the name of the current method.
     String className = this.getClass().getSimpleName(); // Get the name of the class.
+    
     try {
-      @SuppressWarnings("unused")
-      boolean result;
-      if (element.getAttribute("naturalWidth").equals("0")) {
+      String naturalWidth = element.getAttribute("naturalWidth");
+      
+      if ("0".equals(naturalWidth)) {
         otherMethods.messagesMetohd("Message: The located image is broken.");
-        return result = false;
+        return false;
       } else {
         otherMethods.messagesMetohd("Message: The located image is available.");
-        return result = true;
+        return true;
       }
-
     } catch (Exception e) {
-      System.out.println("ERROR! The operadion was not compleate. Please review the '" + methodName +
-        "' method from '" + className + "' class. Error message: " + e); // This message will be shown if something is gone wrong with the method.
+      System.out.println("ERROR! The operation was not complete. Please review the '" + methodName +
+        "' method from '" + className + "' class. Error message: " + e);
       takeScreenShotInMethod(); // Take a screenshot when the method fails.
+      
+      throw new RuntimeException("Failed to check if image is broken. Element: " + element, e);
     }
-	return null;
-}
+  }
 
 }

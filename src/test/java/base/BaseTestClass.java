@@ -40,7 +40,6 @@ public class BaseTestClass {
    * 
    * @param endpoint - provide the endpoint where we want to navigate. If no endpoint is needed, use 'null' value.
    */
-  @SuppressWarnings("unused")
   public void setUp(String endpoint) {
     config = new Configuration(); // Declare a constructor for Configuration.
     otherMethods = new OtherMethods(); // Declare a constructor for OtherMethods.
