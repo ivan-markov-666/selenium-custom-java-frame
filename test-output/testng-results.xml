@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-10-29T14:28:19 EET" name="Default suite" finished-at="2025-10-29T14:28:21 EET" duration-ms="2779">
+  <suite started-at="2025-10-29T15:04:23 EET" name="Default suite" finished-at="2025-10-29T15:04:25 EET" duration-ms="2035">
     <groups>
     </groups>
-    <test started-at="2025-10-29T14:28:19 EET" name="Default test" finished-at="2025-10-29T14:28:21 EET" duration-ms="2779">
+    <test started-at="2025-10-29T15:04:23 EET" name="Default test" finished-at="2025-10-29T15:04:25 EET" duration-ms="2035">
       <class name="tests.A01_StructureOfAutomationTest_spec">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:tests.A01_StructureOfAutomationTest_spec@2aceadd4]" started-at="2025-10-29T14:28:19 EET" name="setUp" finished-at="2025-10-29T14:28:21 EET" duration-ms="2472" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:tests.A01_StructureOfAutomationTest_spec@752325ad]" started-at="2025-10-29T15:04:23 EET" name="setUp" finished-at="2025-10-29T15:04:25 EET" duration-ms="1746" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="searchUsingGoogle()[pri:0, instance:tests.A01_StructureOfAutomationTest_spec@2aceadd4]" started-at="2025-10-29T14:28:21 EET" name="searchUsingGoogle" finished-at="2025-10-29T14:28:21 EET" duration-ms="166" status="PASS">
+        <test-method signature="searchUsingGoogle()[pri:0, instance:tests.A01_StructureOfAutomationTest_spec@752325ad]" started-at="2025-10-29T15:04:25 EET" name="searchUsingGoogle" finished-at="2025-10-29T15:04:25 EET" duration-ms="144" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- searchUsingGoogle -->
-        <test-method is-config="true" signature="afterClass()[pri:0, instance:tests.A01_StructureOfAutomationTest_spec@2aceadd4]" started-at="2025-10-29T14:28:21 EET" name="afterClass" finished-at="2025-10-29T14:28:21 EET" duration-ms="116" status="PASS">
+        <test-method is-config="true" signature="afterClass()[pri:0, instance:tests.A01_StructureOfAutomationTest_spec@752325ad]" started-at="2025-10-29T15:04:25 EET" name="afterClass" finished-at="2025-10-29T15:04:25 EET" duration-ms="118" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterClass -->
