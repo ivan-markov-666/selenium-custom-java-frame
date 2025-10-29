@@ -22,10 +22,8 @@ import configuration.Configuration;
 
 public class MainMethods {
 
-
   private WebDriver driver;
   private WaitTypes wait;
-  private Configuration config;
   private OtherMethods otherMethods;
 
   /**
@@ -35,20 +33,19 @@ public class MainMethods {
    * @param driver - the WebDriver instance to be used for browser automation.
    */
   public MainMethods(WebDriver driver) {
-	  if (driver == null) {
-	    throw new IllegalArgumentException("WebDriver cannot be null!");
-	  }
-	  this.driver = driver;
-	  this.wait = new WaitTypes(driver);
-	  this.config = new Configuration();
-	  this.otherMethods = new OtherMethods();
+    if (driver == null) {
+      throw new IllegalArgumentException("WebDriver cannot be null!");
+    }
+    this.driver = driver;
+    this.wait = new WaitTypes(driver);
+    this.otherMethods = new OtherMethods();
   }
 
   /**
    * Add here more Selenium methods in this class if its needed.
    * If you want to turn on the messages in the methods you need to set the value to 'on' of the 'messages' variable from the 'configuration.Configuration' class.
    */
-  
+
   /**
    * Helper method to convert locator type string to Selenium By object.
    * This eliminates code duplication between getElement() and getElementList().
@@ -60,7 +57,7 @@ public class MainMethods {
    */
   private By getByLocator(String locator, String type) {
     type = type.toLowerCase();
-    
+
     if ("id".equals(type)) {
       return By.id(locator);
     } else if ("xpath".equals(type)) {
@@ -94,13 +91,13 @@ public class MainMethods {
   public WebElement getElement(String locator, String type) {
     String methodName = new Object() {}.getClass().getEnclosingMethod().getName(); // Get the name of the current method.
     String className = this.getClass().getSimpleName(); // Get the name of the class.
-    
+
     try {
       otherMethods.messagesMethod("Message: Trying to find element with locator '" + locator + "' and type '" + type + "'.");
-      
-      By by = getByLocator(locator, type); // ✅ Използваме helper метода!
-      return driver.findElement(by); // ✅ Само 1 ред вместо 30!
-      
+
+      By by = getByLocator(locator, type);
+      return driver.findElement(by);
+
     } catch (org.openqa.selenium.NoSuchElementException e) {
       takeScreenShotInMethod(); // Take a screenshot when the method fails.
       throw new ElementNotFoundException(
@@ -130,16 +127,16 @@ public class MainMethods {
    * @return - the list of elements with used locator will be returned. Returns empty list if no elements found.
    * @throws IllegalArgumentException if the locator type is not supported.
    */
-  public List<WebElement> getElementList(String locator, String type) {
+  public List < WebElement > getElementList(String locator, String type) {
     String methodName = new Object() {}.getClass().getEnclosingMethod().getName(); // Get the name of the current method.
     String className = this.getClass().getSimpleName(); // Get the name of the class.
-    
+
     try {
       otherMethods.messagesMethod("Message: Trying to find elements with locator '" + locator + "' and type '" + type + "'.");
-      
-      By by = getByLocator(locator, type); // ✅ Използваме helper метода!
-      return driver.findElements(by); // ✅ Само 1 ред вместо 30!
-      
+
+      By by = getByLocator(locator, type);
+      return driver.findElements(by);
+
     } catch (IllegalArgumentException e) {
       System.out.println("ERROR! " + e.getMessage());
       throw e;
@@ -159,17 +156,17 @@ public class MainMethods {
    * @return - a boolean result. Returns 'true' if the element is available in the DOM tree, 'false' otherwise.
    */
   public boolean isElementPresent(String locator, String type) {
-    List<WebElement> elementList = getElementList(locator, type);
+    List < WebElement > elementList = getElementList(locator, type);
     int size = elementList.size();
     boolean isPresent = size > 0;
 
-    if ("yes".equals(config.messages)) {
+    if ("on".equals(Configuration.MESSAGES)) {
       otherMethods.messagesMethod("Message: Trying to find element with locator '" + locator + "' and type '" + type + "'. Result: " + (isPresent ? "Found" : "Not found"));
-    } 
+    }
 
-    return isPresent; 
+    return isPresent;
   }
-   
+
   /**
    * This method will open a new tab window.
    * 
@@ -589,7 +586,7 @@ public class MainMethods {
   public String getText(WebElement element) {
     String methodName = new Object() {}.getClass().getEnclosingMethod().getName(); // Get the name of the current method.
     String className = this.getClass().getSimpleName(); // Get the name of the class.
-    
+
     try {
       WebElement webElement = wait.waitIsDisplayed(element); // Wait the WebElement to be displayed on the screen and assign it to the variable.
       String text = webElement.getText(); // Assign the text value to the variable.
@@ -599,7 +596,7 @@ public class MainMethods {
       System.out.println("ERROR! The operation was not complete. Please review the '" + methodName +
         "' method from '" + className + "' class. Error message: " + e);
       takeScreenShotInMethod(); // Take a screenshot when the method fails.
-      
+
       // Throw exception instead of returning error message as text
       throw new RuntimeException("Failed to get text from element. Element: " + element, e);
     }
@@ -612,11 +609,11 @@ public class MainMethods {
    * @param expectedReult	- provide a String that should be the alert text. This will be used for expected result.
    */
   public void AcceptTheAlert(WebElement element, String expectedReult) {
-    String methodName = new Object() {}.getClass().getEnclosingMethod().getName(); // Get the name of the current method.
-    String className = this.getClass().getSimpleName(); // Get the name of the class.
+    String methodName = new Object() {}.getClass().getEnclosingMethod().getName();
+    String className = this.getClass().getSimpleName();
     try {
-      element.click(); // Click on the button to show the pop-up window.
-      WebDriverWait wait = new WebDriverWait(driver,  Duration.ofSeconds(config.timeOut)); // Declare a wait.
+      element.click();
+      WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Configuration.Timeouts.EXPLICIT_WAIT));
       wait.until(ExpectedConditions.alertIsPresent()); // Wait until the pop-up is present.
       String getThePopUpText = driver.switchTo().alert().getText(); // Get the text of the pop-up window.
       Assert.assertEquals(getThePopUpText, expectedReult); // Make an assertion to make sure that the pop-up is opened.
@@ -636,11 +633,11 @@ public class MainMethods {
    * @param expectedReult	- provide a String that should be the alert text. This will be used for expected result.
    */
   public void DismissTheAlert(WebElement element, String expectedReult) {
-    String methodName = new Object() {}.getClass().getEnclosingMethod().getName(); // Get the name of the current method.
-    String className = this.getClass().getSimpleName(); // Get the name of the class.
+    String methodName = new Object() {}.getClass().getEnclosingMethod().getName();
+    String className = this.getClass().getSimpleName();
     try {
-      element.click(); // Click on the button to show the pop-up window.
-      WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(config.timeOut)); // Declare a wait.
+      element.click();
+      WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Configuration.Timeouts.EXPLICIT_WAIT)); // ✅ UPDATED
       wait.until(ExpectedConditions.alertIsPresent()); // Wait until the pop-up is present.
       String getThePopUpText = driver.switchTo().alert().getText(); // Get the text of the pop-up window.
       Assert.assertEquals(getThePopUpText, expectedReult); // Make an assertion to make sure that the pop-up is opened.
@@ -661,11 +658,11 @@ public class MainMethods {
    * @param text			- provide a text. The text will be used to fill the pop-up window input text element.
    */
   public void fillWithTextInToTheAlert(WebElement element, String expectedReult, String text) {
-    String methodName = new Object() {}.getClass().getEnclosingMethod().getName(); // Get the name of the current method.
-    String className = this.getClass().getSimpleName(); // Get the name of the class.
+    String methodName = new Object() {}.getClass().getEnclosingMethod().getName();
+    String className = this.getClass().getSimpleName();
     try {
-      element.click(); // Click on the button to show the pop-up window.
-      WebDriverWait wait = new WebDriverWait(driver,  Duration.ofSeconds(config.timeOut)); // Declare a wait.
+      element.click();
+      WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Configuration.Timeouts.EXPLICIT_WAIT));
       wait.until(ExpectedConditions.alertIsPresent()); // Wait until the pop-up is present.
       String getThePopUpText = driver.switchTo().alert().getText(); // Get the text of the pop-up window.
       Assert.assertEquals(getThePopUpText, expectedReult); // Make an assertion to make sure that the pop-up is opened.
@@ -768,13 +765,16 @@ public class MainMethods {
    * This method is used to create screenshot when something goes wrong with some method from this class.
    */
   public void takeScreenShotInMethod() {
-    String methodName = new Object() {}.getClass().getEnclosingMethod().getName(); // Get the name of the current method.
-    String className = this.getClass().getSimpleName(); // Get the name of the class.
+    String methodName = new Object() {}.getClass().getEnclosingMethod().getName();
+    String className = this.getClass().getSimpleName();
     try {
       String getCalledMethodName = otherMethods.getCallerMethodName(3);
       String getCalledClassName = otherMethods.getCallerClassName(3);
-      String filename = "Screenshot_taken_when_executed_testMethod_" + getCalledMethodName + "_from_testClass_" + getCalledClassName + "_at_time_" + otherMethods.unixTime() + ".png"; // Declare a file name.
-      String directory = System.getProperty("user.dir") + "//screenshots//"; // Declare destination path for creating a new screenshot.
+      String filename = Configuration.Screenshots.METHOD_PREFIX + getCalledMethodName +
+        "_from_testClass_" + getCalledClassName +
+        Configuration.Screenshots.SUFFIX + otherMethods.unixTime() +
+        Configuration.Screenshots.FORMAT;
+      String directory = Configuration.Paths.SCREENSHOTS;
       File sourceFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE); // Get the screenshot.
       FileUtils.copyFile(sourceFile, new File(directory + filename)); // Copy the screenshot to declared destination path with declared file name.
       otherMethods.messagesMethod("Message: Creating a screenshot when method fails.");
@@ -788,12 +788,15 @@ public class MainMethods {
    * This method is used to create screenshot when the test fails (this is used in @AfterMethod annotation).
    */
   public void takeScreenShotInAfterMethod(String executedMethodName) {
-    String methodName = new Object() {}.getClass().getEnclosingMethod().getName(); // Get the name of the current method.
-    String className = this.getClass().getSimpleName(); // Get the name of the class.
+    String methodName = new Object() {}.getClass().getEnclosingMethod().getName();
+    String className = this.getClass().getSimpleName();
     try {
       String getCalledClassName = otherMethods.getCallerClassName(2);
-      String filename = "Screenshot_taken_because_test_fails_when_executed_testMethod_" + executedMethodName + "_from_testClass_" + getCalledClassName + "_at_time_" + otherMethods.unixTime() + ".png"; // Declare a file name.
-      String directory = System.getProperty("user.dir") + "//screenshots//"; // Declare destination path for creating a new screenshot.
+      String filename = Configuration.Screenshots.FAILURE_PREFIX + executedMethodName +
+        "_from_testClass_" + getCalledClassName +
+        Configuration.Screenshots.SUFFIX + otherMethods.unixTime() +
+        Configuration.Screenshots.FORMAT;
+      String directory = Configuration.Paths.SCREENSHOTS; // Declare destination path for creating a new screenshot.
       File sourceFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE); // Get the screenshot.
       FileUtils.copyFile(sourceFile, new File(directory + filename)); // Copy the screenshot to declared destination path with declared file name.
       otherMethods.messagesMethod("Message: Creating a screenshot when the @Test fails.");
@@ -827,7 +830,6 @@ public class MainMethods {
 
   /**
    * This method is used to check if the located image is available or it is broken.
-   * ✅ UPDATED: Now properly returns boolean and throws exception on error instead of returning null.
    * 
    * @param element - please provide an image WebElement.
    * @return - returns 'true' if the image is fully loaded on the UI, 'false' if the image is broken.
@@ -836,10 +838,10 @@ public class MainMethods {
   public boolean checkIfTheImageIsNotBroken(WebElement element) {
     String methodName = new Object() {}.getClass().getEnclosingMethod().getName(); // Get the name of the current method.
     String className = this.getClass().getSimpleName(); // Get the name of the class.
-    
+
     try {
       String naturalWidth = element.getAttribute("naturalWidth");
-      
+
       if ("0".equals(naturalWidth)) {
         otherMethods.messagesMethod("Message: The located image is broken.");
         return false;
@@ -851,7 +853,7 @@ public class MainMethods {
       System.out.println("ERROR! The operation was not complete. Please review the '" + methodName +
         "' method from '" + className + "' class. Error message: " + e);
       takeScreenShotInMethod(); // Take a screenshot when the method fails.
-      
+
       throw new RuntimeException("Failed to check if image is broken. Element: " + element, e);
     }
   }

@@ -14,7 +14,6 @@ import configuration.Configuration;
 public class WaitTypes {
   private WebDriver driver;
   private OtherMethods otherMethods;
-  private Configuration config;
 
   /**
    * Constructor for WaitTypes.
@@ -23,10 +22,12 @@ public class WaitTypes {
    * @param driver - the WebDriver instance to be used for waiting operations.
    */
   public WaitTypes(WebDriver driver) {
-    this.driver = driver;
-    this.otherMethods = new OtherMethods();
-    this.config = new Configuration();
-  }
+	  if (driver == null) {
+	    throw new IllegalArgumentException("WebDriver cannot be null!");
+	  }
+	  this.driver = driver;
+	  this.otherMethods = new OtherMethods();
+	}
 
   /**
    * Add here more waiters in this class if its needed.
@@ -101,14 +102,14 @@ public class WaitTypes {
    */
   public WebElement waitIsDisplayed(WebElement element) {
     try {
-      otherMethods.messagesMethod("Message: Waiting for element '" + element + "' to be displayed (timeout: " + config.timeOut + " seconds).");
+      otherMethods.messagesMethod("Message: Waiting for element '" + element + "' to be displayed (timeout: " + Configuration.Timeouts.EXPLICIT_WAIT + " seconds).");
       
-      WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(config.timeOut));
+      WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Configuration.Timeouts.EXPLICIT_WAIT));
       wait.until(ExpectedConditions.visibilityOf(element));
       
       otherMethods.messagesMethod("Message: The element '" + element + "' is displayed.");
     } catch (Exception e) {
-      String errorMsg = "ERROR! The element is not DISPLAYED after waiting " + config.timeOut + " seconds. Error message: " + e.getMessage();
+      String errorMsg = "ERROR! The element is not DISPLAYED after waiting " + Configuration.Timeouts.EXPLICIT_WAIT + " seconds. Error message: " + e.getMessage();
       System.out.println(errorMsg);
       throw new RuntimeException(errorMsg, e);
     }
@@ -126,14 +127,14 @@ public class WaitTypes {
    */
   public WebElement waitIsEnabled(WebElement element) {
     try {
-      otherMethods.messagesMethod("Message: Waiting for element '" + element + "' to be enabled (timeout: " + config.timeOut + " seconds).");
+      otherMethods.messagesMethod("Message: Waiting for element '" + element + "' to be enabled (timeout: " + Configuration.Timeouts.EXPLICIT_WAIT + " seconds).");
       
-      WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(config.timeOut));
+      WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Configuration.Timeouts.EXPLICIT_WAIT));
       wait.until(driver -> element.isEnabled());
       
       otherMethods.messagesMethod("Message: The element '" + element + "' is enabled.");
     } catch (Exception e) {
-      String errorMsg = "ERROR! The element is not ENABLED after waiting " + config.timeOut + " seconds. Error message: " + e.getMessage();
+      String errorMsg = "ERROR! The element is not ENABLED after waiting " + Configuration.Timeouts.EXPLICIT_WAIT + " seconds. Error message: " + e.getMessage();
       System.out.println(errorMsg);
       throw new RuntimeException(errorMsg, e);
     }
@@ -151,14 +152,14 @@ public class WaitTypes {
    */
   public WebElement waitIsSelected(WebElement element) {
     try {
-      otherMethods.messagesMethod("Message: Waiting for element '" + element + "' to be selected (timeout: " + config.timeOut + " seconds).");
+      otherMethods.messagesMethod("Message: Waiting for element '" + element + "' to be selected (timeout: " + Configuration.Timeouts.EXPLICIT_WAIT + " seconds).");
       
-      WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(config.timeOut));
+      WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Configuration.Timeouts.EXPLICIT_WAIT));
       wait.until(ExpectedConditions.elementToBeSelected(element));
       
       otherMethods.messagesMethod("Message: The element '" + element + "' is selected.");
     } catch (Exception e) {
-      String errorMsg = "ERROR! The element is not SELECTED after waiting " + config.timeOut + " seconds. Error message: " + e.getMessage();
+      String errorMsg = "ERROR! The element is not SELECTED after waiting " + Configuration.Timeouts.EXPLICIT_WAIT + " seconds. Error message: " + e.getMessage();
       System.out.println(errorMsg);
       throw new RuntimeException(errorMsg, e);
     }
@@ -195,13 +196,13 @@ public class WaitTypes {
    */
   public boolean waitIsInvisible(WebElement element) {
     try {
-      otherMethods.messagesMethod("Message: Waiting for element '" + element + "' to become invisible (timeout: " + config.timeOut + " seconds).");
-      WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(config.timeOut));
+      otherMethods.messagesMethod("Message: Waiting for element '" + element + "' to become invisible (timeout: " + Configuration.Timeouts.EXPLICIT_WAIT + " seconds).");
+      WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Configuration.Timeouts.EXPLICIT_WAIT));
       boolean isInvisible = wait.until(ExpectedConditions.invisibilityOf(element));
       otherMethods.messagesMethod("Message: Element '" + element + "' is now invisible.");
       return isInvisible;
     } catch (Exception e) {
-      System.out.println("ERROR! Element is still visible after " + config.timeOut + " seconds. Error: " + e.getMessage());
+      System.out.println("ERROR! Element is still visible after " + Configuration.Timeouts.EXPLICIT_WAIT + " seconds. Error: " + e.getMessage());
       return false;
     }
   }
@@ -216,13 +217,13 @@ public class WaitTypes {
    */
   public boolean waitTextToBePresentInElement(WebElement element, String text) {
     try {
-      otherMethods.messagesMethod("Message: Waiting for text '" + text + "' to be present in element '" + element + "' (timeout: " + config.timeOut + " seconds).");
-      WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(config.timeOut));
+      otherMethods.messagesMethod("Message: Waiting for text '" + text + "' to be present in element '" + element + "' (timeout: " + Configuration.Timeouts.EXPLICIT_WAIT + " seconds).");
+      WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Configuration.Timeouts.EXPLICIT_WAIT));
       boolean textPresent = wait.until(ExpectedConditions.textToBePresentInElement(element, text));
       otherMethods.messagesMethod("Message: Text '" + text + "' is now present in element.");
       return textPresent;
     } catch (Exception e) {
-      System.out.println("ERROR! Text '" + text + "' not present in element after " + config.timeOut + " seconds. Error: " + e.getMessage());
+      System.out.println("ERROR! Text '" + text + "' not present in element after " + Configuration.Timeouts.EXPLICIT_WAIT + " seconds. Error: " + e.getMessage());
       return false;
     }
   }
@@ -238,13 +239,13 @@ public class WaitTypes {
    */
   public boolean waitAttributeContains(WebElement element, String attribute, String value) {
     try {
-      otherMethods.messagesMethod("Message: Waiting for attribute '" + attribute + "' to contain value '" + value + "' in element '" + element + "' (timeout: " + config.timeOut + " seconds).");
-      WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(config.timeOut));
+      otherMethods.messagesMethod("Message: Waiting for attribute '" + attribute + "' to contain value '" + value + "' in element '" + element + "' (timeout: " + Configuration.Timeouts.EXPLICIT_WAIT + " seconds).");
+      WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Configuration.Timeouts.EXPLICIT_WAIT));
       boolean attributeContains = wait.until(ExpectedConditions.attributeContains(element, attribute, value));
       otherMethods.messagesMethod("Message: Attribute '" + attribute + "' now contains value '" + value + "'.");
       return attributeContains;
     } catch (Exception e) {
-      System.out.println("ERROR! Attribute '" + attribute + "' does not contain value '" + value + "' after " + config.timeOut + " seconds. Error: " + e.getMessage());
+      System.out.println("ERROR! Attribute '" + attribute + "' does not contain value '" + value + "' after " + Configuration.Timeouts.EXPLICIT_WAIT + " seconds. Error: " + e.getMessage());
       return false;
     }
   }
