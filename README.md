@@ -21,15 +21,12 @@ Please follow the steps to set up the project:
 2. Set up environment variables for Java.
 3. Install IDE that supports JAVA by your choice.
 4. Add TestNG to your IDE.
-5. Download the last version of chromedriver.exe, geckodriver.exe etc.
-6. Download and install Chrome and Firefox browsers and make sure that you start them once after the installation.
-7. Clone the repository.
-8. Put downloaded WebDrivers from Step 5 inside the "drivers" folder at the project's root.
-9. Add the "drivers" folder from the project's root to the "PATH" environment variables.
-10. If you opened the IDE - restart it.
-11. Open the automation framework by your IDE.
-12. Read the readme.rd file to understand how to use the framework.
-13. Enjoy and automate with pleasure!
+5. Download and install Chrome and/or Firefox browsers and make sure that you start them once after the installation.
+6. Clone the repository.
+7. Open the automation framework by your IDE.
+8. Maven will automatically download all dependencies including WebDriverManager (which will automatically manage browser drivers).
+9. Read the README.md file to understand how to use the framework.
+10. Enjoy and automate with pleasure!
 
 ###	Software dependencies
 The dependencies will be downloaded automatically by Maven.  
@@ -39,6 +36,7 @@ The dependencies will be downloaded automatically by Maven.
 4. commons-io: https://mvnrepository.com/artifact/commons-io/commons-io
 5. commons-exec: https://mvnrepository.com/artifact/org.apache.commons/commons-exec
 6. poi-ooxml: https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
+7. webdrivermanager: https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager
 
 # Build and Test
 To develop new tests:     
@@ -90,8 +88,20 @@ III. You can generate data dynamically using the faker-java library. Please revi
 Because sometimes we will need to upload files, there is a folder where we can put those files. The folder is located in "uploads".   Of course, you can use any other folder on your machine.  
 
 ### WebDriver
-You can put the WebDrivers into the "drivers" folder. Whenever you need to update the WebDrivers - put the new versions in that folder.  
-Suppose you need to add a new browser to the frame. In that case, you need to add the WebDriver to this folder and add the browser name into the "src/main/java/configuration/Configuration.java" class (review the class for more details), then you need to add the new if-else statement into the "src/test/java/base/BaseTestClass.java" class to add WebDriver code related to the browser (review the class for more details).
+This framework uses **WebDriverManager** for automatic browser driver management. WebDriverManager automatically downloads and configures the correct driver version for your installed browser. You don't need to manually download chromedriver.exe, geckodriver.exe, or manage driver paths.
+
+**How it works:**
+- WebDriverManager automatically detects your browser version
+- Downloads the compatible driver version
+- Caches drivers for future use
+- No manual configuration needed
+
+**To add a new browser:**
+1. Add the browser name to the "src/main/java/configuration/Configuration.java" class
+2. Add the corresponding WebDriverManager setup and driver initialization in "src/test/java/base/BaseTestClass.java"
+3. WebDriverManager will handle the rest automatically
+
+**Note:** The framework is configured to use WebDriverManager by default (`useSystemPropertyForBrowserDriver = "no"` in Configuration.java). If you prefer manual driver management, set this value to "yes" and follow the traditional setup process.
 
 ### Screenshots
 The automation frame has a mechanism to generate a screenshot when something goes wrong or when some test fails. The generated screenshot can be found in the "screenshots" folder. Don't forget to refresh the folder from the IDE because the files will not appear.

@@ -166,24 +166,24 @@ public class OtherMethods {
   }
 
   /**
-   * The method is used to turn of and on messages.
-   * 
-   * @param message				- provide the message.
+   * The method is used to turn on and off messages.
+   *
+   * @param message - provide the message that should be printed.
    */
   public void messagesMetohd(String message) {
     String methodName = new Object() {}.getClass().getEnclosingMethod().getName(); // Get the name of the current method.
     String className = this.getClass().getSimpleName(); // Get the name of the class.
     try {
-      if (config.messages == "on") {
-        System.out.print(message);
-      } else if (config.messages == "off") {
-        // The messages is turned off.
+      if ("on".equals(config.messages)) { // ✅ Check if messages are enabled.
+        System.out.println(message); // ✅ Changed to println for better formatting
+      } else if ("off".equals(config.messages)) { // ✅ Messages are turned off.
+        // Do nothing - messages are disabled.
       } else {
-        System.out.print("It seems that the 'messages' variable from the 'configuration.Configuration' class is using wrong value. Please review this variable.");
+        System.out.println("WARNING! The 'messages' variable from the 'configuration.Configuration' class has an invalid value: '" + config.messages + "'. Expected 'on' or 'off'. Please review this variable.");
       }
     } catch (Exception e) {
-      System.out.println("ERROR! The operadion was not compleate. Please review the '" + methodName +
-        "' method from '" + className + "' class. Error message: " + e); // This message will be shown if something is gone wrong with the method.
+      System.out.println("ERROR! The operation was not complete. Please review the '" + methodName +
+        "' method from '" + className + "' class. Error message: " + e); // ✅ Fixed typos
     }
   }
 

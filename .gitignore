@@ -1,8 +1,77 @@
-# Ignore pom packages:
-src/main/java/pom_book
-src/main/java/pom_training
+# ============================================
+# IDE - Eclipse
+# ============================================
+.metadata/
+.settings/
+.classpath
+.project
+bin/
+*.launch
+.recommenders/
 
-# Ignore spec tests
-src/test/java/scrap_bookT2S
-src/test/java/trainings
-/target/
+# ============================================
+# Maven
+# ============================================
+target/
+
+# ============================================
+# TestNG
+# ============================================
+test-output/
+
+# ============================================
+# Runtime artifacts from tests
+# ============================================
+screenshots/
+downloads/
+
+# ============================================
+# WebDrivers (download locally)
+# ============================================
+drivers/*.exe
+drivers/*.log
+drivers/chromedriver
+drivers/geckodriver
+!drivers/.gitkeep
+
+# ============================================
+# Uploads (keep only examples)
+# ============================================
+uploads/*
+!uploads/test.png
+!uploads/.gitkeep
+
+# ============================================
+# Personal notes
+# ============================================
+toDo/
+
+# ============================================
+# Excel test data (uncomment if sensitive)
+# ============================================
+# ExcelData/*.xlsx
+# !ExcelData/example.xlsx
+
+# ============================================
+# Logs
+# ============================================
+*.log
+
+# ============================================
+# OS
+# ============================================
+.DS_Store
+Thumbs.db
+
+# ============================================
+# Java
+# ============================================
+*.class
+
+# ============================================
+# Project specific - Ignore work packages
+# ============================================
+src/main/java/pom_book/
+src/main/java/pom_training/
+src/test/java/scrap_bookT2S/
+src/test/java/trainings/

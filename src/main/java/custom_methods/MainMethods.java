@@ -22,13 +22,26 @@ import configuration.Configuration;
 
 public class MainMethods {
 
-  private WebDriver driver;
-  private WaitTypes wait = new WaitTypes(driver);
-  private Configuration config = new Configuration();
-  private OtherMethods otherMethods = new OtherMethods();
 
+  private WebDriver driver;
+  private WaitTypes wait;
+  private Configuration config;
+  private OtherMethods otherMethods;
+
+  /**
+   * Constructor for MainMethods.
+   * Initializes all dependencies with the provided WebDriver instance.
+   * 
+   * @param driver - the WebDriver instance to be used for browser automation.
+   */
   public MainMethods(WebDriver driver) {
-    this.driver = driver;
+	  if (driver == null) {
+	    throw new IllegalArgumentException("WebDriver cannot be null!");
+	  }
+	  this.driver = driver;
+	  this.wait = new WaitTypes(driver);
+	  this.config = new Configuration();
+	  this.otherMethods = new OtherMethods();
   }
 
   /**
@@ -131,26 +144,24 @@ public class MainMethods {
   }
 
   /**
-   * The method is used to check if the element is present.
-   * @param locator		- provide the locator of the element.
-   * @param type		- provide the locator type (id, xpath, cssSelector, name, linkText, partialLinkText, className, tagName).
-   * @return			- a boolean result should be returned. If the locator is available in the DOM tree - the result will be 'true'. If the locator is NOT available in the DOM tree - the result should be 'false'.
+   * The method is used to check if the element is present in the DOM tree.
+   * 
+   * @param locator - provide the locator of the element.
+   * @param type - provide the locator type (id, xpath, cssSelector, name, linkText, partialLinkText, className, tagName).
+   * @return - a boolean result. Returns 'true' if the element is available in the DOM tree, 'false' otherwise.
    */
   public boolean isElemenstPresent(String locator, String type) {
-    List < WebElement > elementList = getElementList(locator, type);
+    List<WebElement> elementList = getElementList(locator, type);
     int size = elementList.size();
-    if (config.messages == "yes") {
-      otherMethods.messagesMetohd("Message: Trying to find element with locator '" + locator + "' and type '" + type + "'.");
-    } else {
-      if (size > 0) {
-        return true;
-      } else {
-        return false;
-      }
+    boolean isPresent = size > 0; // ✅ Store result in a variable
+    
+    if ("yes".equals(config.messages)) { // ✅ Fixed String comparison
+      otherMethods.messagesMetohd("Message: Trying to find element with locator '" + locator + "' and type '" + type + "'. Result: " + (isPresent ? "Found" : "Not found")); // ✅ Added result to message
     }
-    return false;
+    
+    return isPresent; // ✅ Return the actual result
   }
-
+  
   /**
    * This method will open a new tab window.
    * 

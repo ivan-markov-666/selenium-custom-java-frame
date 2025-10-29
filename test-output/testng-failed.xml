@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tests.A20_1_FillingTheForm_spec">
+      <class name="tests.A27_TakeScreenshot_spec">
         <methods>
-          <include name="afterClass"/>
-          <include name="setUp"/>
-          <include name="fillingTheFormWithCorrectDateFirstExample"/>
+          <include name="beforeMethod"/>
+          <include name="afterMethod"/>
+          <include name="getScreenShotExampleWhemTestFails"/>
         </methods>
-      </class> <!-- tests.A20_1_FillingTheForm_spec -->
+      </class> <!-- tests.A27_TakeScreenshot_spec -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

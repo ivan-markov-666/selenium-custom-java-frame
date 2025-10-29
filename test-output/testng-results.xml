@@ -2,24 +2,24 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-06-19T14:48:19 EEST" name="Default suite" finished-at="2023-06-19T14:48:28 EEST" duration-ms="9380">
+  <suite started-at="2025-10-29T11:00:09 EET" name="Default suite" finished-at="2025-10-29T11:00:11 EET" duration-ms="2255">
     <groups>
     </groups>
-    <test started-at="2023-06-19T14:48:19 EEST" name="Default test" finished-at="2023-06-19T14:48:28 EEST" duration-ms="9380">
-      <class name="tests.A20_8_FillingTheForm_spec">
-        <test-method is-config="true" signature="beforeClass()[pri:0, instance:tests.A20_8_FillingTheForm_spec@3c41ed1d]" started-at="2023-06-19T14:48:19 EEST" name="beforeClass" finished-at="2023-06-19T14:48:22 EEST" duration-ms="3542" status="PASS">
+    <test started-at="2025-10-29T11:00:09 EET" name="Default test" finished-at="2025-10-29T11:00:11 EET" duration-ms="2255">
+      <class name="tests.A01_StructureOfAutomationTest_spec">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:tests.A01_StructureOfAutomationTest_spec@2aceadd4]" started-at="2025-10-29T11:00:09 EET" name="setUp" finished-at="2025-10-29T11:00:11 EET" duration-ms="1901" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- beforeClass -->
-        <test-method signature="finalTestView()[pri:0, instance:tests.A20_8_FillingTheForm_spec@3c41ed1d]" started-at="2023-06-19T14:48:22 EEST" name="finalTestView" finished-at="2023-06-19T14:48:27 EEST" duration-ms="4675" status="PASS">
+        </test-method> <!-- setUp -->
+        <test-method signature="searchUsingGoogle()[pri:0, instance:tests.A01_StructureOfAutomationTest_spec@2aceadd4]" started-at="2025-10-29T11:00:11 EET" name="searchUsingGoogle" finished-at="2025-10-29T11:00:11 EET" duration-ms="187" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- finalTestView -->
-        <test-method is-config="true" signature="afterClass()[pri:0, instance:tests.A20_8_FillingTheForm_spec@3c41ed1d]" started-at="2023-06-19T14:48:27 EEST" name="afterClass" finished-at="2023-06-19T14:48:28 EEST" duration-ms="1127" status="PASS">
+        </test-method> <!-- searchUsingGoogle -->
+        <test-method is-config="true" signature="afterClass()[pri:0, instance:tests.A01_StructureOfAutomationTest_spec@2aceadd4]" started-at="2025-10-29T11:00:11 EET" name="afterClass" finished-at="2025-10-29T11:00:11 EET" duration-ms="131" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterClass -->
-      </class> <!-- tests.A20_8_FillingTheForm_spec -->
+      </class> <!-- tests.A01_StructureOfAutomationTest_spec -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

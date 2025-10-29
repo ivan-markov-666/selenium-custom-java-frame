@@ -25,7 +25,7 @@ public class Configuration {
 	 * - "yes" we will use the system property way.
 	 * - "no" we will use the environment variable way.
 	 */
-	public static final String useSystemPropertyForBrowserDriver = "no";
+	public static final String useSystemPropertyForBrowserDriver = "yes";
 	/** Declare the folder path of the used Excel for Data Driven Testing. */
 	public final String excelFilePath = System.getProperty("user.dir") + "\\ExcelData\\";
 	/** Declare the Excel name that we will use for Data Driven Testing. */
