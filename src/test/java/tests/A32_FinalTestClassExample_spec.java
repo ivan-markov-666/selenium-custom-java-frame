@@ -9,6 +9,9 @@ package tests;
 
 import org.testng.annotations.Test;
 import base.BaseTestClass;
+import configuration.Configuration;
+import dataDrivenTesting_methods.ImportDataFromExcel;
+
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.ITestResult;
@@ -67,17 +70,20 @@ public class A32_FinalTestClassExample_spec extends BaseTestClass {
     page.verifySearchFunctionalityMainMethod(firstNameValueEdited, lastNameValueEdited, ageValueEdited, emailValueEdited, salaryValueEdited, departmentValueEdited, "true");
   }
 
+  @DataProvider(name = "dataProviderName")
+  public Object[][] dataProvider() {
+    if (excel == null) {
+      excel = new ImportDataFromExcel();
+      excel.setExcelFile(Configuration.Paths.EXCEL_DATA + "A33_WorkingWithTables.xlsx", "Sheet1");
+    }
+    Object[][] testData = excel.getDataFromExcelFile("begin");
+    return testData;
+  }
+
   @BeforeClass
   public void beforeClass() {
     setUp(endpoint);
     page = new A24_2_po(driver);
-    dataDriven("A33_WorkingWithTables.xlsx", "Sheet1");
-  }
-
-  @DataProvider(name = "dataProviderName")
-  public Object[][] dataProvider() {
-    Object[][] testData = excel.getDataFromExcelFile("begin");
-    return testData;
   }
 
   @AfterClass

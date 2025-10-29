@@ -3,7 +3,7 @@
 <suite name="This is the main testing suit.">
 <test name="This suit contains all developed automation tests.">
 	<classes>
-		<class name="A25_2_ClassAnotationsExample_spec"></class>
+		<class name="tests.A25_2_ClassAnotationsExample_spec"></class>
 	</classes>
 </test> <!-- Test -->
 </suite> <!-- Suit -->
