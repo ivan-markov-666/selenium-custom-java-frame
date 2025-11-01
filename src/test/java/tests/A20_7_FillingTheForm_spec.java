@@ -226,7 +226,7 @@ public class A20_7_FillingTheForm_spec {
     softassert.assertEquals(page.assertDateOfBirth.getText(), outputDateOfBirth);
     softassert.assertEquals(page.assertSubjects.getText(), subjectsExpectedResult);
     softassert.assertEquals(page.assertHobbies.getText(), hobbiesExpectedResult);
-    softassert.assertEquals(page.assertPicture.getText(), Configuration.Timeouts.IMPLICIT_WAIT);
+    softassert.assertEquals(page.assertPicture.getText(), Configuration.Files.UPLOAD_FILE_NAME);
     softassert.assertEquals(page.assertAddress.getText(), currentAddress);
     softassert.assertEquals(page.assertStateNadCity.getText(), staetAndCity);
     softassert.assertAll();
