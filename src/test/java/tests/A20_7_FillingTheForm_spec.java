@@ -1,17 +1,17 @@
 /**
  * Description:
- * This class shows how to fill one form - high (first test example) and very-high (second test example) level of automating with using: dynamically generated data using the java-faker library; actual (existing) email address; POM optimization for selectors; custom methods (or only custom methods); Assertions; the testing data is generated dynamically for inputs.
- *  - POM optimization is used.
+ * This class shows how to fill one form - high (first test example) and very-high (second test example) level of automating with using: dynamically generated data using the Java Faker library; actual (existing) email address; POM optimization for selectors; custom methods (or only custom methods); Assertions; the testing data is generated dynamically for inputs.
+ *  - POM optimisation is used.
  *  - Tested data is NOT hardcoded, generated dynamically, and the email address is actual (exists).
  *  - Usage of custom methods.
  *  - Other inputs (drop-down lists, calendar, radio option, checkbox and autocompleted input text elements) are supplied randomly using custom methods. 
- *  - The test case is added like comments in the code (in the second test example). 
+ *  - The test case is added as comments in the code (in the second test example). 
  *  - Code in the @BeforeClass and @AfterClass annotations not extended from another class.
- *  - Assertion to verify that the test was compleated correctly.
+ *  - Assertion to verify that the test was completed correctly.
  *  - Declaration of variables inside the test.
  *  
- * ! ALERT: As you can see, the web driver path is not added in the code like system property.
- * 		    To make this example work - you need to add the web driver files (chromedriver.exe, geckodriver.exe) like environment variables.
+ * ! ALERT: As you can see, the web driver path is not added in the code like a system property.
+ * 		 To make this example work, you need to add the web driver files (chromedriver.exe, geckodriver.exe) as environment variables.
  */
 
 package tests;
@@ -92,12 +92,12 @@ public class A20_7_FillingTheForm_spec {
     String hobbiesExpectedResult = null;
     String cityActualResult = null;
 
-    // First we need to open email address.
+    // First, we need to open the email address.
     mainMethods.navigateURL(teMinutesMailUrl, page.confirmText10minutesMail_Page);
     page.copyEmail.click();
-    // We call this method from the class "OtherMethods". We are getting the copied data from the clip board here.
+    // We call this method from the class "OtherMethods". We are getting the copied data from the clipboard here.
     String copyEmail = otherMethods.clickboardData();
-    // Lets open new tab and switch the focus of the Selenium to newly opened tab.
+    //Let's open a new tab and switch the focus of Selenium to the newly opened tab.
     mainMethods.openNewBrowserTab(1, url, page.firstName);
     mainMethods.fillWithText(firstName, page.firstName);
     mainMethods.fillWithText(lastName, page.lastName);
@@ -180,42 +180,42 @@ public class A20_7_FillingTheForm_spec {
     String currentAddress = faker.lorem().sentence(24, 5);
     String staetAndCity = null;
 
-    /** 1.	Navigate to: https://10minemail.com . */
+    /** 1.	Navigate to: https://10minemail.com. */
     mainMethods.navigateURL(teMinutesMailUrl, page.confirmText10minutesMail_Page);
     /** 2.	Copy the email. */
     page.copyEmail.click();
     /** 3.	Navigate to: https://demoqa.com/automation-practice-form. */
-    mainMethods.openNewBrowserTab(1, url, page.firstName); // Lets open new tab and switch the focus of the Selenium to newly opened tab.
-    /** 4.	Fill with correct data into the “First Name” input text element. */
+    mainMethods.openNewBrowserTab(1, url, page.firstName); //Let's open a new tab and switch the focus of Selenium to the newly opened tab.
+    /** 4.	Fill in with correct data into the “First Name” input text element. */
     mainMethods.fillWithText(firstName, page.firstName);
-    /** 5.	Fill with correct data into the “Last Name” input text element. */
+    /** 5.	Fill in with correct data into the “Last Name” input text element. */
     mainMethods.fillWithText(lastName, page.lastName);
-    /** 6.	Fill with correct data into the “Email” input text element. */
-    copyEmail = otherMethods.clickboardData(); // We call this method from the class "OtherMethods". We are getting the copied data from the clip board here.
+    /** 6.	Fill in with correct data into the “Email” input text element. */
+    copyEmail = otherMethods.clickboardData(); // We call this method from the class "OtherMethods". We are getting the copied data from the clipboard here.
     mainMethods.fillWithText(copyEmail, page.email);
-    /** 7.	Select random correct option from the “Gender” section. */
+    /** 7.	Select a random correct option from the “Gender” section. */
     genderExpectedResult = page.selectRandomGender();
-    /** 8.	Fill with correct data into the “Mobile Number” input text element. */
+    /** 8.	Fill in with correct data into the “Mobile Number” input text element. */
     mainMethods.fillWithText(phoneNumner, page.phone);
-    /** 9.	Fill with correct data into the “Date of Birth” input text element. */
+    /** 9.	Fill in with correct data into the “Date of Birth” input text element. */
     page.selectRandomDateOfBirthValue();
     dateOfBirthValue = page.dateOfBirth.getAttribute("value"); // We need to take the filled data into the "Date of Birth" input text element.
     outputDateOfBirth = page.parseMonths(dateOfBirthValue);
-    /** 10.	Select random correct date for “Subjects”. */
+    /** 10.	Select a random correct date for “Subjects”. */
     subjects.addAll(Arrays.asList(subjectsValues)); // Add the collection to the array.
     subjectsExpectedResult = page.selectRandomSubjects(subjects, 13);
     /** 11.	Check random correct value/s from the “Hobbies” section. */
     hobbiesExpectedResult = page.selectRandomHobbies(hobbiesElements, 2);
-    /** 12.	Upload random correct picture file. */
+    /** 12.	Upload a random correct picture file. */
     page.uploadFile.sendKeys(uploadFile);
-    /** 13.	Fill with correct data into the “Current Address” input text element. */
+    /** 13.	Fill in with correct data into the “Current Address” input text element. */
     mainMethods.fillWithText(currentAddress, page.currentAddress);
-    /** 14.	Select random correct date for “State and City” inputs. */
+    /** 14.	Select a random correct date for “State and City” inputs. */
     staetAndCity = page.selectRandomStateAndCity();
-    /** 15.	Press on the “Submit” button. */
+    /** 15.	Press the “Submit” button. */
     mainMethods.clickEnterButton(page.submitButton, page.assertStudentName);
 
-    wait.staticWait(5); // We are using static wait because sometimes the automation test fails. So we need this to make the test more stable. This is not a good practice, but sometimes we are not able to wait by different way.
+    wait.staticWait(5); // We are using a static wait because the automation test sometimes fails. So we need this to make the test more stable. This is not a good practice, but sometimes we are not able to wait differently.
 
     /** 16.	Verify that the imputed date are saved correctly into the system. */
     /** Assertion */
